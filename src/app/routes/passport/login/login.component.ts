@@ -1,8 +1,8 @@
-import { SettingsService } from '@delon/theme';
 import { Component, OnDestroy, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
+import { SettingsService, _HttpClient } from '@delon/theme';
 import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
 import { environment } from '@env/environment';
 
@@ -16,6 +16,7 @@ export class UserLoginComponent implements OnDestroy {
 
     form: FormGroup;
     error = '';
+    /** 表单类型，`0` 表示账密登录，`1` 表示手机登录 */
     type = 0;
     loading = false;
 
@@ -25,7 +26,9 @@ export class UserLoginComponent implements OnDestroy {
         public msg: NzMessageService,
         private settingsService: SettingsService,
         private socialService: SocialService,
-        @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
+        private http: _HttpClient,
+        @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService
+    ) {
         this.form = fb.group({
             userName: [null, [Validators.required, Validators.minLength(5)]],
             password: [null, Validators.required],

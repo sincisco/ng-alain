@@ -1,10 +1,8 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { throwIfAlreadyLoaded } from './module-import-guard';
-import { AlainThemeModule } from '@delon/theme';
 
 @NgModule({
-    imports: [
-       AlainThemeModule.forRoot()
+    providers: [
     ]
 })
 export class CoreModule {
