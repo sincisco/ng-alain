@@ -1,0 +1,34 @@
+@import (once)"../../variables";
+
+a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  opacity: .98;
+  text-decoration: none;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+    span{
+      animation:mymove 3s infinite;
+    }
+  }
+  span{
+    display: inline-block;
+    color: rgba(248, 251, 245, 0.9);
+    line-height: @header-height;
+    font-size: 32px;
+    text-shadow: 0 0 0px #fff, 0 0 1px #fff, 0 0 2px #fff;
+  }
+}
+
+@keyframes mymove{
+  0% {text-shadow: 0 0 0px #fff, 0 0 1px #fff, 0 0 2px #fff;}
+  20% {text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 40px #fff, 0 0 70px #000093;}
+  40% {text-shadow: 0 0 0px #fff, 0 0 2px #fff, 0 0 4px #fff, 0 0 8px #fff, 0 0 10px #000093; }
+  60% {text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 40px #fff, 0 0 70px #000093;}
+  100% {text-shadow:0 0 0px #fff, 0 0 1px #fff, 0 0 2px #fff;}
+}
+//text-shadow: h-shadow v-shadow blur color;
+//text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 40px #a8e3df, 0 0 70px #000093;

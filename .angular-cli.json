@@ -18,9 +18,15 @@
         "testTsconfig": "tsconfig.spec.json",
         "prefix": "app",
         "styles": [
+            "platform/styles/fonts/fonts.metro/metro-icons.css",
+            "platform/styles/fonts/fonts.shepherd/style.css",
             "styles.less"
         ],
         "scripts": [
+            "../node_modules/jquery/dist/jquery.js",
+            "platform/utils/jquery.cookie.js",
+            "platform/utils/jquery.mousewheel.js",
+            "platform/utils/jquery.animateCss.js",
             "../node_modules/@antv/g2/dist/g2.min.js",
             "../node_modules/@antv/data-set/dist/data-set.min.js",
             "../node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js"

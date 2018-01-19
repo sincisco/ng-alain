@@ -1,0 +1,118 @@
+<tile-area>
+  <tile-group title="加钞运维">
+    <tile size="tile" *menuTarget="'system.user'" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-envelop  mif-ani-slow mif-ani-hover-shake"></span>
+      </div>
+      <span class="tile-label">message</span>
+      <span class="tile-badge bg-magenta">6</span>
+    </tile>
+    <tile *menuTarget="'system.devFault'" size="tile" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-organization"></span>
+      </div>
+      <span class="tile-label">用户管理</span>
+    </tile>
+    <tile size="tile" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-versions"></span>
+      </div>
+      <span class="tile-label">版本控制</span>
+    </tile>
+    <tile size="tile" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-library"></span>
+      </div>
+      <span class="tile-label">机构管理</span>
+    </tile>
+    <tile size="tile" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-credit-card"></span>
+      </div>
+      <span class="tile-label">吞卡管理</span>
+    </tile>
+    <tile size="tile-wide" bg="bg-darkViolet" *menuTarget="'dev.fault'">
+      <div class="tile-content slide-down">
+        <div class="slide">
+          <h1 style="color: rgba(214,242,209,0.69)">
+            {{num}}台设备有故障
+          </h1>
+
+        </div>
+        <div class="slide-over">
+          <div style="width: 100%;height: 100%;background-color: rgba(114,217,92,0.69)">
+            <h1>text</h1>
+            <p>
+
+            </p>
+          </div>
+        </div>
+      </div>
+      <span class="tile-label">设备故障</span>
+    </tile>
+    <tile size="tile-wide" bg="bg-orange">
+      <div class="tile-content slide-down-2">
+        <div class="slide">
+          <img src="../../../assets/images/6.jpg">
+        </div>
+        <div class="slide-over">
+          这个电影不好看
+        </div>
+      </div>
+    </tile>
+  </tile-group>
+  <tile-group title="设备管理">
+    <tile size="tile-wide">
+      <div class="tile-content zooming-out">
+        <div class="slide">
+          <img src="../../../assets/images/4.jpg">
+        </div>
+      </div>
+    </tile>
+    <tile size="tile-wide">
+      <div class="tile-content">
+        <div class="slide">
+          <img src="../../../assets/images/5.jpg">
+        </div>
+        <div class="tile-label">Zooming</div>
+      </div>
+    </tile>
+    <tile>
+      <div class="tile-content">
+        <div class="live-slide"><img src="../../../assets/images/me.jpg" data-role="fitImage" data-format="fill"></div>
+        <div class="live-slide"><img src="../../../assets/images/spface.jpg" data-role="fitImage" data-format="fill"></div>
+      </div>
+    </tile>
+    <tile *menuTarget="'system.delete'" target="system.user"  size="tile-wide">
+      <div class="tile-content image-set">
+        <img src="../../../assets/images/1.jpg">
+        <img src="../../../assets/images/2.jpg">
+        <img src="../../../assets/images/3.jpg">
+        <img src="../../../assets/images/4.jpg">
+        <img src="../../../assets/images/5.jpg">
+      </div>
+    </tile>
+    <tile size="tile-small" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon zijin-icon-location"></span>
+      </div>
+    </tile>
+    <tile>
+      <div class="tile-content">
+        <div class="image-container">
+          <div class="frame">
+            <img src="../../../assets/images/9.jpg">
+          </div>
+          <div class="image-overlay">
+
+          </div>
+        </div>
+      </div>
+    </tile>
+  </tile-group>
+</tile-area>
+
+
+
+
+

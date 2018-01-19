@@ -16,3 +16,16 @@ declare var require: NodeRequire;
 declare var G2: any;
 declare var Slider: any;
 declare var Cloud: any;
+
+interface JQueryStatic {
+    cookie(key, value?, options?):any;
+    removeCookie(key, options?);
+    clearAllCookie();
+}
+
+interface JQuery {
+    mousewheel(callback:Function): any;
+    animateCss(name:string,callback?:Function):any;
+    transitionEnd(callback?:Function):any;
+    transitionOnce(cssMap?:any):any;
+}

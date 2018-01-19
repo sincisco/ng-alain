@@ -1,0 +1,14 @@
+<li *ngFor="let child of data.children" [class.nav-submenu-open]="child._open">
+    <!-- link -->
+    <a *ngIf="child._type === 1" [routerLink]="child.link" [routerLinkActive]="['nav-item-selected']">
+        {{  child.text }}
+    </a>
+    <!-- has children link -->
+    <a *ngIf="child._type === 3">
+        {{  child.text }}
+    </a>
+
+    <ul nav-menu *ngIf="child._type === 3" [source]="child">
+    </ul>
+</li>
+

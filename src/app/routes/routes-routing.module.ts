@@ -19,11 +19,36 @@ import { CallbackComponent } from './callback/callback.component';
 import { Exception403Component } from './exception/403.component';
 import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
+import {LayoutMetroComponent} from '../layout/metro/layout.metro.component';
 
 const routes: Routes = [
     {
         path: '',
         component: LayoutDefaultComponent,
+        children: [
+            { path: '', redirectTo: 'dashboard/v1', pathMatch: 'full' },
+            { path: 'dashboard', redirectTo: 'dashboard/v1', pathMatch: 'full' },
+            { path: 'dashboard/v1', component: DashboardV1Component, data: { translate: 'dashboard_v1' } },
+            { path: 'dashboard/analysis', component: DashboardAnalysisComponent, data: { translate: 'dashboard_analysis' } },
+            { path: 'dashboard/monitor', component: DashboardMonitorComponent, data: { translate: 'dashboard_monitor' } },
+            { path: 'dashboard/workplace', component: DashboardWorkplaceComponent, data: { translate: 'dashboard_workplace' } },
+            { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' },
+            { path: 'elements', loadChildren: './elements/elements.module#ElementsModule' },
+            { path: 'other', loadChildren: './other/other.module#OtherModule' },
+            { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },
+            { path: 'editor', loadChildren: './editor/editor.module#EditorModule' },
+            { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
+            { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
+            { path: 'maps', loadChildren: './maps/maps.module#MapsModule' },
+            { path: 'pages', loadChildren: './pages/pages.module#PagesModule' },
+            { path: 'logics', loadChildren: './logics/logics.module#LogicsModule' },
+            { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' },
+            { path: 'pro', loadChildren: './pro/pro.module#ProModule' }
+        ]
+    },
+    {
+        path: 'metro',
+        component: LayoutMetroComponent,
         children: [
             { path: '', redirectTo: 'dashboard/v1', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/v1', pathMatch: 'full' },

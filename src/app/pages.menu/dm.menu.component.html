@@ -1,0 +1,75 @@
+<tile-area>
+  <tile-group title="用户管理">
+    <tile size="tile" *menuTarget="'system.user'" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-organization"></span>
+      </div>
+      <span class="tile-label">用户信息</span>
+    </tile>
+    <tile *menuTarget="'system.password'"  bg="bg-green" fg="fg-white">
+      <div class="tile-content">
+        <img src="../../assets/images/pages/system/userPassword.png" data-role="fitImage" data-format="fill">
+      </div>
+      <span class="tile-label">用户密码</span>
+    </tile>
+    <tile *menuTarget="'system.role'" size="tile-wide"  bg="bg-green" fg="fg-white">
+      <div class="tile-content">
+        <img src="../../assets/images/pages/system/templaterole.jpg" data-role="fitImage" data-format="fill">
+      </div>
+      <span class="tile-label">角色权限</span>
+    </tile>
+    <tile  *menuTarget="'system.org'"  bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-library"></span>
+      </div>
+      <span class="tile-label">用户机构</span>
+    </tile>
+  </tile-group>
+  <tile-group title="组件管理">
+    <tile size="tile" *menuTarget="'system.user'" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-envelop  mif-ani-slow mif-ani-hover-shake"></span>
+      </div>
+      <span class="tile-label">图表组件管理</span>
+      <span class="tile-badge bg-magenta">6</span>
+    </tile>
+
+  </tile-group>
+
+  <tile-group title="定时任务管理">
+    <tile size="tile" *menuTarget="'system.user'" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-envelop  mif-ani-slow mif-ani-hover-shake"></span>
+      </div>
+      <span class="tile-label">任务日志管理</span>
+      <span class="tile-badge bg-magenta">6</span>
+    </tile>
+
+    <tile *menuTarget="'system.timeJob'" size="tile" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-organization"></span>
+      </div>
+      <span class="tile-label">定时任务管理</span>
+    </tile>
+  </tile-group>
+  <tile-group title="其他">
+    <tile size="tile" *menuTarget="'system.user'" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-envelop  mif-ani-slow mif-ani-hover-shake"></span>
+      </div>
+      <span class="tile-label">明细查询管理</span>
+      <span class="tile-badge bg-magenta">6</span>
+    </tile>
+    <tile size="tile" *menuTarget="'system.user'" bg="bg-green" fg="fg-white">
+      <div class="tile-content iconic">
+        <span class="icon mif-organization"></span>
+      </div>
+      <span class="tile-label">成本管理</span>
+    </tile>
+  </tile-group>
+</tile-area>
+
+
+
+
+

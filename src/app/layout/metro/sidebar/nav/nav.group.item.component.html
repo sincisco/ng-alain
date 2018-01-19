@@ -1,0 +1,13 @@
+<!-- link -->
+<a *ngIf="data._type === 1" [routerLink]="data.link" [routerLinkActive]="['nav-item-selected']">
+    <i class="{{ data.icon }}"></i>
+    <span>{{ data.text }}</span>
+</a>
+<!-- has children link -->
+<a *ngIf="data._type === 3" class="nav-sub-title"
+   (click)="toggleOpen(data)">
+    <i class="{{ data.icon }}"></i>
+    <span>{{ data.text }}</span>
+</a>
+<ul nav-menu [source]="data"></ul>
+

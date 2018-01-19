@@ -1,0 +1,12 @@
+<ul class="breadcrumbs">
+  <li>
+    <a>
+      <i class="zijin-icon-home"></i>
+    </a>
+    <span class="separator"></span>
+  </li>
+  <li *ngFor="let nav of breadcrumbService.getNavs()">
+    <a>{{nav.name}}</a>
+    <span class="separator"></span>
+  </li>
+</ul>

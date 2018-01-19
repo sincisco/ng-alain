@@ -1,0 +1,61 @@
+@import (once)"variables.less";
+
+:host {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  app-header{
+    height: @header-height;
+      padding: 0px !important;
+    z-index: 1000;
+    flex-shrink: 0;
+  }
+  div.user-content-outer-wrapper {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+    flex-basis: 100px;
+    div.metro-menu-wrapper {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 999;
+      background-color: rgba(29, 29, 29, 0.98);
+      transform: translateY(-100%);
+      transition: all 0.3s ease-out;
+      .menu-list{
+        transition: all 0.01s ease-out;
+      }
+    }
+    div.user-content-inner-wrapper {
+      min-height: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease-in-out;
+      app-toolbar{
+        height: 24px;
+        flex-shrink: 0;
+      }
+      section.content-outer-wrapper {
+        flex-grow: 1;
+        flex-shrink: 1;
+        overflow: hidden;
+        background-color: #ffffff;
+        flex-basis: 100px;
+        .content-inner-wrapper {
+          height: 100%;
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+}
+
+
+
