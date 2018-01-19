@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import {MenuConfig} from "../../../../pages.menu/menu.config";
-import {MetroMenuService} from "../../../../../platform/core/services/menu.metro.service";
+import {MenuService} from "@microon/theme";
 
 @Component({
     selector: 'app-layout-nav',
@@ -9,7 +9,7 @@ import {MetroMenuService} from "../../../../../platform/core/services/menu.metro
 })
 export class SidebarNavComponent{
 
-    constructor(public menuService:MetroMenuService) {
+    constructor(public menuService:MenuService) {
 
     }
 

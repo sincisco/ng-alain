@@ -1,27 +1,27 @@
 import {
     Directive, EmbeddedViewRef, Input, TemplateRef, ViewContainerRef
-} from '@angular/core';
-import {MetroMenuService} from "../../core/services/menu.metro.service";
+} from "@angular/core";
+import {MenuService} from "@microon/theme";
 
-@Directive({selector: '[menuTarget]'})
+@Directive({selector: "[menuTarget]"})
 export class MenuTargetDirective {
     private _context: NgMenuTargetContext = new NgMenuTargetContext();
-    private _templateRef: TemplateRef<NgMenuTargetContext>|null = null;
-    private _contentViewRef: EmbeddedViewRef<NgMenuTargetContext>|null = null;
+    private _templateRef: TemplateRef<NgMenuTargetContext> | null = null;
+    private _contentViewRef: EmbeddedViewRef<NgMenuTargetContext> | null = null;
 
     constructor(private _viewContainer: ViewContainerRef,
                 private templateRef: TemplateRef<NgMenuTargetContext>,
-                private _menuService:MetroMenuService) {
+                private _menuService: MenuService) {
         this._templateRef = templateRef;
     }
 
-    private _menuTarget:string;
+    private _menuTarget: string;
 
     @Input("menuTarget")
     set menuTarget(condition: any) {
         this._context.$implicit =
             this._context.show =
-                this._menuService.hasPermission(this._menuTarget=condition);
+                this._menuService.hasPermission(this._menuTarget = condition);
         this._updateView();
     }
 
@@ -32,8 +32,8 @@ export class MenuTargetDirective {
                 if (this._templateRef) {
                     this._contentViewRef =
                         this._viewContainer.createEmbeddedView(this._templateRef, this._context);
-                    var $element=$(this._contentViewRef.rootNodes[0]);
-                    $element.data("menuTarget",this._menuTarget);
+                    const $element = $(this._contentViewRef.rootNodes[0]);
+                    $element.data("menuTarget", this._menuTarget);
                 }
             }
         } else {

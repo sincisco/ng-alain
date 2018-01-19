@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {MetroMenuService} from "../../../../../platform/core/services/menu.metro.service";
-import {Menu} from "@delon/theme";
+import {Menu, MenuService} from "@delon/theme";
 
 
 @Component({
@@ -12,7 +11,7 @@ export class NavGroupItemComponent{
     @Input("source")
     data:Menu;
 
-    constructor(private menuService:MetroMenuService) {
+    constructor(private menuService:MenuService) {
 
     }
 

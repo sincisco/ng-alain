@@ -2,7 +2,7 @@ import {Component, ElementRef, Input, HostListener, HostBinding, AfterViewInit} 
 import {Tile} from "./IRectangle";
 import {Router} from "@angular/router";
 import {LayoutMetroComponent} from "../../layout.metro.component";
-import {MetroMenuService} from "../../../../../platform/core/services/menu.metro.service";
+import {MenuService} from "@microon/theme";
 
 @Component({
   selector: "tile",
@@ -40,7 +40,7 @@ export class TileComponent extends Tile implements AfterViewInit {
   easing = "swing";
 
   constructor(private _elementRef: ElementRef,
-              private menuService: MetroMenuService,
+              private menuService: MenuService,
               private layout: LayoutMetroComponent,
               private router: Router) {
     super();
@@ -52,7 +52,7 @@ export class TileComponent extends Tile implements AfterViewInit {
     const menuTarget = this.$element.data("menuTarget");
     if (menuTarget) {
       this.layout.hideMenuPanel();
-      this.router.navigateByUrl(this.menuService.getUrl(menuTarget))
+      this.router.navigateByUrl(this.menuService.getLink(menuTarget))
         .then(() => {
           this.menuService.currentMenu = menuTarget;
       });
