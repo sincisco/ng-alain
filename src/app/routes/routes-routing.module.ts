@@ -20,11 +20,13 @@ import { Exception403Component } from './exception/403.component';
 import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 import {LayoutMetroComponent} from '../layout/metro/layout.metro.component';
+import {AuthGuard} from "@core/auth-guard.service";
 
 const routes: Routes = [
     {
         path: '',
         component: LayoutDefaultComponent,
+        canActivateChild: [AuthGuard],
         children: [
             { path: '', redirectTo: 'dashboard/v1', pathMatch: 'full' },
             { path: 'dashboard', redirectTo: 'dashboard/v1', pathMatch: 'full' },

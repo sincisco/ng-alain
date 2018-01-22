@@ -47,7 +47,79 @@
             "icon": "icon-grid",
             "badge": 2
         }]
-    }, {
+    },
+        {
+            "text": "平台管理",
+            "serverID":"A",
+            "group": true,
+            "icon": "zijin-icon-system",
+            "children": [
+                {
+                    "id": "system.user",
+                    "serverID":"A0103",
+                    "text": "用户信息",
+                    "link": "/system/user"
+                },
+                {
+                    "id": "system.password",
+                    "text": "用户密码",
+                    "link": "/system/password"
+                },
+                {
+                    "id": "system.role",
+                    "text": "角色权限",
+                    "link": "/system/role"
+                }
+            ]
+        },
+        {
+            "text": "服务API",
+            "serverID":"B01",
+            "group": true,
+            "icon": "zijin-icon-detailQuery",
+            "children": [
+                {
+                    "id": "serviceAPI.info",
+                    "text": "服务管理",
+                    "link": "/serviceAPI/serviceInfo"
+                }
+            ]
+        },
+        {
+            "text": "应用管理",
+            "group": true,
+            "icon": "zijin-icon-report",
+            "children": [
+                {
+                    "id": "application.query",
+                    "text": "我的应用",
+                    "link": "/application/applicationQuery"
+                },
+                {
+                    "id": "application.recycleBin",
+                    "text": "应用回收站",
+                    "link": "/application/applicationQuery"
+                },
+                {
+                    "id": "application.audit",
+                    "text": "应用审核",
+                    "link": "/application/applicationQuery"
+                }
+            ]
+        },
+        {
+            "text": "服务定义",
+            "group": true,
+            "icon": "zijin-icon-dataMining",
+            "children": [
+                {
+                    "id": "service.definition",
+                    "text": "服务定义",
+                    "link": "/serviceDefinition/serviceDef"
+                }
+            ]
+        },
+        {
         "text": "组件",
         "translate": "component",
         "group": true,

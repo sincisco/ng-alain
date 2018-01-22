@@ -1,11 +1,11 @@
 <ul class="nav">
     <ng-container *ngFor="let group of menuService.menus">
-        <ng-container *ngIf="group.hide !== true">
+        <ng-container *ngIf="group._hidden !== true">
             <li class="nav-group-title">
                 <span>{{group.text }}</span>
             </li>
             <ng-container *ngFor="let child of group.children">
-                <li nav-group-item *ngIf="child.hide !== true"
+                <li nav-group-item *ngIf="child._hidden !== true"
                     [class.nav-submenu-open]="child._open"
                     [source]="child">
                 </li>

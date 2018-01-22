@@ -14,6 +14,6 @@ export class SidebarNavComponent{
     }
 
     ngOnInit(){
-        this.menuService.add(MenuConfig);
+        //this.menuService.add(MenuConfig);
     }
 }

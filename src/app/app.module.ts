@@ -31,6 +31,7 @@ import {MonitorMenuComponent} from "./pages.menu/monitor.menu.component";
 import {GISMenuComponent} from "./pages.menu/gis.menu.component";
 import {DeveloperMenuComponent} from "./pages.menu/developer.menu.component";
 import {DataMiningMenuComponent} from "./pages.menu/dataMining.menu.component";
+import {HttpInterceptors} from "@core/net/http-interceptor";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -80,6 +81,7 @@ const MenuArray = [
         { provide: LOCALE_ID, useValue: 'zh-Hans' },
         { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true},
         { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true},
+        { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptors, multi: true},
         { provide: ALAIN_I18N_TOKEN, useClass: I18NService, multi: false },
         StartupService,
         {

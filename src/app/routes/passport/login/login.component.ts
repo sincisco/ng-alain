@@ -1,10 +1,15 @@
-import { SettingsService } from '@delon/theme';
+import {MenuService, SettingsService} from "@delon/theme";
 import { Component, OnDestroy, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd';
+import {NzMessageService, NzModalService} from "ng-zorro-antd";
 import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
 import { environment } from '@env/environment';
+import {AuthService} from "@core/auth.service";
+import {SessionService} from "@core/session.service";
+import {Session} from "../../../models/session";
+import {OrgGrade} from "../../../models/orgGrade";
+import {LoginService} from "./login.service";
 
 @Component({
     selector: 'passport-login',
@@ -25,6 +30,11 @@ export class UserLoginComponent implements OnDestroy {
         public msg: NzMessageService,
         private settingsService: SettingsService,
         private socialService: SocialService,
+        private session: SessionService,
+        private auth: AuthService,
+        private loginService: LoginService,
+        private modal: NzModalService,
+        private menuService:MenuService,
         @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
         this.form = fb.group({
             userName: [null, [Validators.required, Validators.minLength(5)]],
@@ -77,7 +87,43 @@ export class UserLoginComponent implements OnDestroy {
         }
         // mock http
         this.loading = true;
-        setTimeout(() => {
+
+        this.loginService.login({
+            userID:this.userName.value,
+            password:this.password.value
+        }).subscribe(
+            data => {
+                this.loading = false;
+                console.log(data);
+                console.log(JSON.stringify(data));
+                if (data.retCode !== "00") {
+                    this.modal.error({
+                        content: `登录异常！ 返回码：${data.retCode}, 返回信息：${data.retMsg}`
+                    });
+                    return;
+                } else {
+                    //this.menu.setMenus(data.menuDTOList || []);
+
+                    this.menuService.updateACLFlag((data.menuDTOList || []).map((value:any)=>{
+                        return value.no;
+                    }));
+
+                    this.session.setSession(new Session(data.account,
+                        data.name,
+                        new OrgGrade(data.orgGrade, data.orgName),
+                        data.orgGrade,
+                        data.orgNo,
+                        data.roleCatalog
+                    ));
+                    this.auth.setLogin(true);
+                    $.cookie("webToken",data.webToken)
+                    // RetInfo 怎么处理？？？
+                    this.router.navigate(['/']);
+                }
+            }
+        );
+
+        /*setTimeout(() => {
             this.loading = false;
             if (this.type === 0) {
                 if (this.userName.value !== 'admin' || this.password.value !== '888888') {
@@ -94,7 +140,7 @@ export class UserLoginComponent implements OnDestroy {
                 time: +new Date
             });
             this.router.navigate(['/']);
-        }, 1000);
+        }, 1000);*/
     }
 
     // region: social

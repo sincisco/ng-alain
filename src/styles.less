@@ -15,3 +15,17 @@
 @import '../node_modules/ng2-dnd/bundles/style.css';
 
 @import "platform/styles/index";
+
+.aside-expanded {
+    .aside-metro {
+        transform: translateX(0);
+    }
+    .user-content-inner-wrapper {
+        margin-left: 200px !important;
+    }
+}
+
+
+app-layout router-outlet + *{
+    padding: 24px;
+}
