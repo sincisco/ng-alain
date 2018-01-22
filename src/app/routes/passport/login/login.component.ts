@@ -1,21 +1,21 @@
-import {MenuService, SettingsService} from "@delon/theme";
-import { Component, OnDestroy, Inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {NzMessageService, NzModalService} from "ng-zorro-antd";
-import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '@delon/auth';
-import { environment } from '@env/environment';
-import {AuthService} from "@core/auth.service";
-import {SessionService} from "@core/session.service";
-import {Session} from "../../../models/session";
-import {OrgGrade} from "../../../models/orgGrade";
-import {LoginService} from "./login.service";
+import {MenuService, SettingsService} from '@delon/theme';
+import {Component, OnDestroy, Inject} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {NzMessageService, NzModalService} from 'ng-zorro-antd';
+import {SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN} from '@delon/auth';
+import {environment} from '@env/environment';
+import {AuthService} from '@core/auth.service';
+import {SessionService} from '@core/session.service';
+import {Session} from '../../../models/session';
+import {OrgGrade} from '../../../models/orgGrade';
+import {LoginService} from './login.service';
 
 @Component({
     selector: 'passport-login',
     templateUrl: './login.component.html',
-    styleUrls: [ './login.component.less' ],
-    providers: [ SocialService ]
+    styleUrls: ['./login.component.less'],
+    providers: [SocialService]
 })
 export class UserLoginComponent implements OnDestroy {
 
@@ -24,18 +24,17 @@ export class UserLoginComponent implements OnDestroy {
     type = 0;
     loading = false;
 
-    constructor(
-        fb: FormBuilder,
-        private router: Router,
-        public msg: NzMessageService,
-        private settingsService: SettingsService,
-        private socialService: SocialService,
-        private session: SessionService,
-        private auth: AuthService,
-        private loginService: LoginService,
-        private modal: NzModalService,
-        private menuService:MenuService,
-        @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
+    constructor(fb: FormBuilder,
+                private router: Router,
+                public msg: NzMessageService,
+                private settingsService: SettingsService,
+                private socialService: SocialService,
+                private session: SessionService,
+                private auth: AuthService,
+                private loginService: LoginService,
+                private modal: NzModalService,
+                private menuService: MenuService,
+                @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
         this.form = fb.group({
             userName: [null, [Validators.required, Validators.minLength(5)]],
             password: [null, Validators.required],
@@ -47,10 +46,21 @@ export class UserLoginComponent implements OnDestroy {
 
     // region: fields
 
-    get userName() { return this.form.controls.userName; }
-    get password() { return this.form.controls.password; }
-    get mobile() { return this.form.controls.mobile; }
-    get captcha() { return this.form.controls.captcha; }
+    get userName() {
+        return this.form.controls.userName;
+    }
+
+    get password() {
+        return this.form.controls.password;
+    }
+
+    get mobile() {
+        return this.form.controls.mobile;
+    }
+
+    get captcha() {
+        return this.form.controls.captcha;
+    }
 
     // endregion
 
@@ -63,6 +73,7 @@ export class UserLoginComponent implements OnDestroy {
     count = 0;
     interval$: any;
 
+    //开始手机验证码有效时间更新
     getCaptcha() {
         this.count = 59;
         this.interval$ = setInterval(() => {
@@ -89,22 +100,19 @@ export class UserLoginComponent implements OnDestroy {
         this.loading = true;
 
         this.loginService.login({
-            userID:this.userName.value,
-            password:this.password.value
+            userID: this.userName.value,
+            password: this.password.value
         }).subscribe(
             data => {
                 this.loading = false;
-                console.log(data);
-                console.log(JSON.stringify(data));
-                if (data.retCode !== "00") {
+                console.log('登录返回信息', data);
+                if (data.retCode !== '00') {
                     this.modal.error({
                         content: `登录异常！ 返回码：${data.retCode}, 返回信息：${data.retMsg}`
                     });
                     return;
                 } else {
-                    //this.menu.setMenus(data.menuDTOList || []);
-
-                    this.menuService.updateACLFlag((data.menuDTOList || []).map((value:any)=>{
+                    this.menuService.updateACLFlag((data.menuDTOList || []).map((value: any) => {
                         return value.no;
                     }));
 
@@ -116,12 +124,18 @@ export class UserLoginComponent implements OnDestroy {
                         data.roleCatalog
                     ));
                     this.auth.setLogin(true);
-                    $.cookie("webToken",data.webToken)
+                    $.cookie('webToken', data.webToken);
                     // RetInfo 怎么处理？？？
-                    this.router.navigate(['/']);
+                    this.router.navigate([this.auth.redirectUrl || '/']);
                 }
+            }, error => {
+                console.log(this.error);
+            },
+            () => {
+                console.log('login complete');
             }
-        );
+        )
+        ;
 
         /*setTimeout(() => {
             this.loading = false;

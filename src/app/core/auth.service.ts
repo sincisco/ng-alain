@@ -9,8 +9,8 @@ import {SERVERAPI} from "./constant";
 // TODO: 验证用户是否登录
 @Injectable()
 export class AuthService {
-  private loggedIn: boolean;
-  private redirectUrl: string;  // store the URL so we can redirect after logging in
+  private _loggedIn: boolean;
+  public redirectUrl: string;  // store the URL so we can redirect after logging in
 
 
   private url = SERVERAPI + "menu/menu/curUser";
@@ -19,17 +19,16 @@ export class AuthService {
 
   }
 
-
   getCurUser(): Observable<any> {
     return this.http.get(this.url);
   }
 
-  isLoggedIn(): boolean {
-    return this.loggedIn;
+  get isLoggedIn(): boolean {
+    return this._loggedIn;
   }
 
-  setLogin(v: boolean) {
-    this.loggedIn = v;
+  setLogin(value: boolean) {
+    this._loggedIn = value;
   }
 
 }
