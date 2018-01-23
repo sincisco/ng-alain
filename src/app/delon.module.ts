@@ -204,7 +204,9 @@ const MOCKMODULE = !environment.production || environment.chore === true ?
         AdReuseTabModule.forRoot(), AdFullContentModule.forRoot(), AdXlsxModule.forRoot(), AdZipModule.forRoot(),
         // auth
         AlainAuthModule.forRoot({
-            // ignores: [ `\\/login`, `assets\\/` ],
+            ignores: [ `\\/login`, `assets\\/` ],
+            token_send_place:'header',
+            token_send_key: 'X-Session-Token',
             token_invalid_redirect:false,
             login_url: `/passport/login`
         }),

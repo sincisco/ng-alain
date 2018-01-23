@@ -11,7 +11,6 @@ export class LoginService {
   private url = SERVERAPI + "login";
 
   constructor(private http: HttpClient) {
-        $.temp=this.http;
   }
 
   login(params): Observable<any> {

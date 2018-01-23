@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Session} from '../models/session';
 import {OrgGrade} from '../models/orgGrade';
-import {MenuService} from '@microon/theme';
+import {MenuService, SettingsService} from '@microon/theme';
 import {AuthService} from '@core/auth.service';
+import {DA_SERVICE_TOKEN, TokenService} from '@microon/auth';
 
 @Injectable()
 export class SessionService {
@@ -11,8 +12,13 @@ export class SessionService {
     private _session: Session;  // TODO: 应该定义为private
 
     constructor(private menuService: MenuService,
-                private authService: AuthService) {
-
+                private authService: AuthService,
+                @Inject(DA_SERVICE_TOKEN)private tokenService:TokenService,
+                private settings:SettingsService) {
+        this.tokenService.change().subscribe((res: any) => {
+            console.log("change",JSON.stringify(res));
+            this.settings.setUser(res);
+        });
     }
 
     get inited() {
@@ -45,10 +51,15 @@ export class SessionService {
         this.menuService.updateACLFlag((data.menuDTOList || []).map((value: any) => {
             return value.no;
         }));
+        const token =  {
+            name: data.name,
+            avatar: './assets/img/zorro.svg',
+            email: data.email||"xxx@zjft.com",
+            token: data.webToken,
+        };
+        console.log(JSON.stringify(token));
+        this.tokenService.set(token);
         this.authService.setLogin(true);
-
-        $.cookie('webToken', data.webToken);
     }
-
 }
 

@@ -27,17 +27,17 @@ export class HeaderUserComponent implements OnInit {
         @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {}
 
     ngOnInit(): void {
-        this.tokenService.change().subscribe((res: any) => {
+        /*this.tokenService.change().subscribe((res: any) => {
             this.settings.setUser(res);
-        });
+        });*/
         // mock
-        const token = this.tokenService.get() || {
-            token: 'nothing',
-            name: 'Admin',
-            avatar: './assets/img/zorro.svg',
-            email: 'cipchk@qq.com'
-        };
-        this.tokenService.set(token);
+        // const token = this.tokenService.get() || {
+        //     token: 'nothing',
+        //     name: 'Admin',
+        //     avatar: './assets/img/zorro.svg',
+        //     email: 'cipchk@qq.com'
+        // };
+        // this.tokenService.set(token);
     }
 
     logout() {

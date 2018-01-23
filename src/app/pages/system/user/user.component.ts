@@ -24,7 +24,12 @@ export class UserComponent implements OnInit {
     console.log("当前页大小"+this.page.pageSize)
     this.userService.getRoles()
       .subscribe(data=>{
+          console.log("subscribe",data);
         return this.roles = (<any>data).retList;
+      },err=>{
+          console.log("error",err);
+      },()=>{
+          console.log("complete");
       });
     this.formModel['userNo']=null;
     this.formModel['roleNo']=null,
@@ -49,7 +54,6 @@ export class UserComponent implements OnInit {
        userNo:this.formModel['userNo']||"",
        roleNo:this.formModel['roleNo']||"",
        userName:this.formModel['userName']||"",
-
     };
 
     console.log(params);
@@ -82,11 +86,6 @@ export class UserComponent implements OnInit {
     var params={
       no:no
     };
-    this.userService.delUser(params)
-      .subscribe(data=>{
-        console.log(data);
-        this.refreshData(false);
-      })
   }
 
     openModify(item:any){
