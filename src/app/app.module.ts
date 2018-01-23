@@ -22,15 +22,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '@core/i18n/i18n.service';
 import {SystemMenuComponent} from "./pages.menu/system.menu.component";
-import {BIMenuComponent} from "./pages.menu/bi.menu.component";
-import {DetailQueryMenuComponent} from "./pages.menu/detailQuery.menu.component";
-import {StaticReportMenuComponent} from "./pages.menu/staticReport.menu.component";
-import {AddnotesMenuComponent} from "./pages.menu/addnotes.menu.component";
-import {WatcherMenuComponent} from "./pages.menu/watcher.menu.component";
-import {MonitorMenuComponent} from "./pages.menu/monitor.menu.component";
-import {GISMenuComponent} from "./pages.menu/gis.menu.component";
-import {DeveloperMenuComponent} from "./pages.menu/developer.menu.component";
-import {DataMiningMenuComponent} from "./pages.menu/dataMining.menu.component";
 import {HttpInterceptors} from "@core/net/http-interceptor";
 
 // AoT requires an exported function for factories
@@ -43,16 +34,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
 }
 
 const MenuArray = [
-    SystemMenuComponent,
-    BIMenuComponent,
-    DetailQueryMenuComponent,
-    StaticReportMenuComponent,
-    AddnotesMenuComponent,
-    MonitorMenuComponent,
-    WatcherMenuComponent,
-    GISMenuComponent,
-    DeveloperMenuComponent,
-    DataMiningMenuComponent];
+    SystemMenuComponent];
 
 @NgModule({
     declarations: [

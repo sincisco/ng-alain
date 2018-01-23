@@ -112,19 +112,7 @@ export class UserLoginComponent implements OnDestroy {
                     });
                     return;
                 } else {
-                    this.menuService.updateACLFlag((data.menuDTOList || []).map((value: any) => {
-                        return value.no;
-                    }));
-
-                    this.session.setSession(new Session(data.account,
-                        data.name,
-                        new OrgGrade(data.orgGrade, data.orgName),
-                        data.orgGrade,
-                        data.orgNo,
-                        data.roleCatalog
-                    ));
-                    this.auth.setLogin(true);
-                    $.cookie('webToken', data.webToken);
+                    this.session.parseData(data);
                     // RetInfo 怎么处理？？？
                     this.router.navigate([this.auth.redirectUrl || '/']);
                 }

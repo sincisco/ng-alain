@@ -20,7 +20,11 @@ export class AuthService {
   }
 
   getCurUser(): Observable<any> {
-    return this.http.get(this.url);
+     return this.http.get(this.url);
+  }
+
+  get canTryReload(){
+      return !!$.cookie("webToken");
   }
 
   get isLoggedIn(): boolean {

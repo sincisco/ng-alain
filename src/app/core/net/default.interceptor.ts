@@ -15,7 +15,9 @@ import { environment } from '@env/environment';
  */
 @Injectable()
 export class DefaultInterceptor implements HttpInterceptor {
-    constructor(private injector: Injector) {}
+    constructor(private injector: Injector) {
+        console.log("DefaultInterceptor constructor");
+    }
 
     get msg(): NzMessageService {
         return this.injector.get(NzMessageService);
@@ -28,7 +30,7 @@ export class DefaultInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler):
         Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
-
+        console.log("DefaultInterceptor intercept");
         // 统一加上服务端前缀
         let url = req.url;
         if (!url.startsWith('https://') && !url.startsWith('http://')) {
@@ -39,8 +41,10 @@ export class DefaultInterceptor implements HttpInterceptor {
             url: url
         });
 
-        return next.handle(newReq).pipe(
+        return next.handle(newReq)/*.pipe(
                     mergeMap((event: any) => {
+                        console.log("mergeMap");
+                        console.log(event);
                         // 允许统一对请求错误处理，这是因为一个请求若是业务上错误的情况下其HTTP请求的状态是200的情况下需要
                         if (event instanceof HttpResponse && event.status !== 200) {
                             // 业务错误处理，ng-alain
@@ -50,6 +54,8 @@ export class DefaultInterceptor implements HttpInterceptor {
                         return of(event);
                     }),
                     catchError((res: HttpErrorResponse) => {
+                        console.log("catchError",res.status);
+                        console.log(res);
                         // 业务处理：一些通用操作
                         switch (res.status) {
                             case 401: // 未登录状态码
@@ -67,6 +73,6 @@ export class DefaultInterceptor implements HttpInterceptor {
                         // 返回错误状态码
                         return of(<any>{ status: res.status });
                     })
-                );
+                );*/
     }
 }

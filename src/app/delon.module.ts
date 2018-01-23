@@ -205,6 +205,7 @@ const MOCKMODULE = !environment.production || environment.chore === true ?
         // auth
         AlainAuthModule.forRoot({
             // ignores: [ `\\/login`, `assets\\/` ],
+            token_invalid_redirect:false,
             login_url: `/passport/login`
         }),
         // acl
