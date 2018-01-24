@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {BreadcrumbService} from "./breadcrumb.service";
+import {SessionService} from '@core/session.service';
 
 @Component({
     selector: 'toolbar-breadcrumb',
@@ -7,5 +7,5 @@ import {BreadcrumbService} from "./breadcrumb.service";
     styleUrls: ['./breadcrumb.component.less' ]
 })
 export class ToolbarBreadcrumbComponent {
-    constructor(public breadcrumbService:BreadcrumbService) { }
+    constructor(public session:SessionService) { }
 }

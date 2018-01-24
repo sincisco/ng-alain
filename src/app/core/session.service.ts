@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {Session} from '../models/session';
 import {OrgGrade} from '../models/orgGrade';
-import {MenuService, SettingsService} from '@microon/theme';
+import {Menu, MenuService, SettingsService} from '@microon/theme';
 import {DA_SERVICE_TOKEN, TokenService} from '@microon/auth';
 
 @Injectable()
@@ -44,6 +44,17 @@ export class SessionService {
 
     setLogin(value: boolean) {
         this._loggedIn = value;
+    }
+
+    private _currentPath:Array<Menu> =[];
+
+    set currentPath(param:Array<Menu>){
+        this._currentPath.splice(0,this._currentPath.length);
+        this._currentPath.push(...param);
+    }
+
+    getCurrentPath(){
+        return this._currentPath;
     }
 
     parseData(data) {

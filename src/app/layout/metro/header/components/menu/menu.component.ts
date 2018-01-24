@@ -16,9 +16,7 @@ export class HeaderMenuComponent implements AfterViewInit {
   constructor(private _elementRef: ElementRef,
               private router: Router,
               private _layout: LayoutMetroComponent) {
-    this.menuArray = MenuConfig.filter((menu:Menu)=>{
-      return !!menu.menu_type;
-    });
+    this.menuArray = MenuConfig;
   }
 
   doShow(param) {
@@ -27,7 +25,6 @@ export class HeaderMenuComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.addMouseWheel();
-
   }
 
   addMouseWheel() {

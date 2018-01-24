@@ -1,7 +1,8 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { ThemesService, SettingsService, TitleService } from '@delon/theme';
+import {ThemesService, SettingsService, TitleService, MenuService} from '@delon/theme';
 import { filter } from 'rxjs/operators';
+import {SessionService} from '@core/session.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ export class AppComponent implements OnInit {
   constructor(
     private theme: ThemesService,
     private settings: SettingsService,
+    private session:SessionService,
+    private menuService:MenuService,
     private router: Router,
     private titleSrv: TitleService) {
   }
@@ -23,6 +26,17 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.router.events
         .pipe(filter(evt => evt instanceof NavigationEnd))
-        .subscribe(() => this.titleSrv.setTitle());
+        .subscribe((evt:NavigationEnd) => {
+            this.titleSrv.setTitle();
+            var url=evt.urlAfterRedirects;
+            if(url.startsWith("/metro"))
+                url=url.substring(6);
+            this.session.currentPath=this.menuService.getPathByUrl(url).map((value)=>{
+                return {
+                    text:value.text,
+                    link:value.link
+                }
+            });
+        });
   }
 }

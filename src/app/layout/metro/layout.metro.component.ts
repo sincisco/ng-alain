@@ -1,7 +1,7 @@
 import {Component, ViewChild, ElementRef, ViewContainerRef, ComponentFactoryResolver, AfterViewInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {Menu} from "@delon/theme";
-import {MenuConfig, refresh} from "../../pages.menu/menu.config";
+import {IMenu, MenuConfig, refresh} from '../../pages.menu/menu.config';
 
 
 @Component({
@@ -30,6 +30,7 @@ export class LayoutMetroComponent implements AfterViewInit{
   animating: false;
 
   showMenuPanel(menuItem: Menu) {
+      console.log(menuItem);
     var $menuWrapper = this.$menuWrapper,
       $list = this.$menuList,
       offsetLeft = this._left = $(menuItem._element).position().left;
@@ -72,12 +73,9 @@ export class LayoutMetroComponent implements AfterViewInit{
     this.addMouseWheel();
     setTimeout(() => {
       let viewContainerRef = this.mySpan;
-      MenuConfig.forEach((menuItem: Menu) => {
-        if(!menuItem.menu_type){
-          return;
-        }
+      MenuConfig.forEach((menuItem: IMenu) => {
         let componentFactory = this.componentFactoryResolver
-          .resolveComponentFactory(menuItem.menu_type);
+          .resolveComponentFactory(menuItem.type);
         let componentRef = viewContainerRef.createComponent(componentFactory);
         menuItem._instance = componentRef;
         menuItem._element = (<any>componentRef.hostView).rootNodes[0];
@@ -92,6 +90,7 @@ export class LayoutMetroComponent implements AfterViewInit{
       console.log($list.width());
       console.log(this._left);
       if ((this._left >= -30) && (this._left <= ($list.width() + 50))) {
+
 
       }
       this._left = this._left - delta * 30;

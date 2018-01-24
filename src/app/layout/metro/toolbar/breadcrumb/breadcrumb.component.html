@@ -5,8 +5,8 @@
     </a>
     <span class="separator"></span>
   </li>
-  <li *ngFor="let nav of breadcrumbService.getNavs()">
-    <a>{{nav.name}}</a>
+  <li *ngFor="let nav of session.getCurrentPath()">
+    <a>{{nav.text}}</a>
     <span class="separator"></span>
   </li>
 </ul>

@@ -2,8 +2,6 @@ import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {ToolbarComponent} from "./toolbar.component";
 import {ToolbarBreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
-import {BreadcrumbService} from "./breadcrumb/breadcrumb.service";
-
 
 const COMPONENTS = [
   ToolbarComponent,
@@ -20,7 +18,6 @@ const COMPONENTS = [
     ...COMPONENTS
   ],
   providers:[
-    BreadcrumbService
   ]
 })
 export class ToolbarModule {
