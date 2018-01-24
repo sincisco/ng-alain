@@ -17,6 +17,7 @@ import { Exception403Component } from './exception/403.component';
 import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 import {LoginService} from "./passport/login/login.service";
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
     imports: [ SharedModule, RouteRoutingModule ],
@@ -27,6 +28,7 @@ import {LoginService} from "./passport/login/login.service";
         DashboardWorkplaceComponent,
         // passport pages
         UserLoginComponent,
+        LoginComponent,
         UserRegisterComponent,
         UserRegisterResultComponent,
         // single pages

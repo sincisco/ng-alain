@@ -2,7 +2,6 @@ import {Inject, Injectable} from '@angular/core';
 import {Session} from '../models/session';
 import {OrgGrade} from '../models/orgGrade';
 import {MenuService, SettingsService} from '@microon/theme';
-import {AuthService} from '@core/auth.service';
 import {DA_SERVICE_TOKEN, TokenService} from '@microon/auth';
 
 @Injectable()
@@ -10,9 +9,9 @@ export class SessionService {
 
     private _inited: boolean = false;
     private _session: Session;  // TODO: 应该定义为private
+    private _loggedIn: boolean;
 
     constructor(private menuService: MenuService,
-                private authService: AuthService,
                 @Inject(DA_SERVICE_TOKEN)private tokenService:TokenService,
                 private settings:SettingsService) {
         this.tokenService.change().subscribe((res: any) => {
@@ -39,6 +38,14 @@ export class SessionService {
         return this._session;
     }
 
+    get isLoggedIn(): boolean {
+        return this._loggedIn;
+    }
+
+    setLogin(value: boolean) {
+        this._loggedIn = value;
+    }
+
     parseData(data) {
         this.Session = new Session(
             data.account,
@@ -59,7 +66,7 @@ export class SessionService {
         };
         console.log(JSON.stringify(token));
         this.tokenService.set(token);
-        this.authService.setLogin(true);
+        this._loggedIn=true;
     }
 }
 

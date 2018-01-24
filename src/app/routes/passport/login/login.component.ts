@@ -5,7 +5,6 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN} from '@delon/auth';
 import {environment} from '@env/environment';
-import {AuthService} from '@core/auth.service';
 import {SessionService} from '@core/session.service';
 import {Session} from '../../../models/session';
 import {OrgGrade} from '../../../models/orgGrade';
@@ -30,7 +29,6 @@ export class UserLoginComponent implements OnDestroy {
                 private settingsService: SettingsService,
                 private socialService: SocialService,
                 private session: SessionService,
-                private auth: AuthService,
                 private loginService: LoginService,
                 private modal: NzModalService,
                 private menuService: MenuService,
@@ -114,7 +112,7 @@ export class UserLoginComponent implements OnDestroy {
                 } else {
                     this.session.parseData(data);
                     // RetInfo 怎么处理？？？
-                    this.router.navigate([this.auth.redirectUrl || '/']);
+                    this.router.navigate([this.tokenService.redirect|| '/']);
                 }
             }, error => {
                 console.log(this.error);

@@ -23,6 +23,7 @@ import {LayoutMetroComponent} from '../layout/metro/layout.metro.component';
 import {AuthGuard} from "@core/auth-guard.service";
 import {pageRoutes} from '../pages/pages-routing.module';
 import {LoginGuard} from '@core/login-guard.service';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
     {
@@ -92,6 +93,9 @@ const routes: Routes = [
             { path: 'register', component: UserRegisterComponent },
             { path: 'register-result', component: UserRegisterResultComponent }
         ]
+    },
+    {   path: 'login',
+        component: LoginComponent
     },
     // 单页不包裹Layout
     { path: 'callback/:type', component: CallbackComponent },
