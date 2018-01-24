@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 // region: third libs
 import { CountdownModule } from 'ngx-countdown';
+import {PlatformModule} from '@microon/platform';
 const THIRDMODULES = [ CountdownModule ];
 // endregion
 
@@ -47,6 +48,7 @@ const DIRECTIVES = [];
         ...ZORROMODULES,
         NgZorroAntdExtraModule,
         AlainThemeModule,
+        PlatformModule,
         ...ABCMODULES,
         // i18n
         TranslateModule,

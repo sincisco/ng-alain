@@ -178,6 +178,7 @@ import { DelonCacheModule } from '@delon/cache';
 import { DelonMockModule } from '@delon/mock';
 import * as MOCKDATA from '../../_mock';
 import { environment } from '@env/environment';
+import {PlatformModule} from '@microon/platform';
 const MOCKMODULE = !environment.production || environment.chore === true ?
                     [ DelonMockModule.forRoot({ data: MOCKDATA }) ] : [];
 
@@ -214,6 +215,7 @@ const MOCKMODULE = !environment.production || environment.chore === true ?
         AlainACLModule.forRoot(),
         // cache
         DelonCacheModule.forRoot(),
+        PlatformModule.forRoot(),
         // mock
         ...MOCKMODULE
     ]

@@ -1,5 +1,5 @@
 import {Component, ElementRef} from "@angular/core";
-import {MenuBase} from "../../platform/core/interfaces/menu";
+import {MenuBase} from '@microon/platform';
 
 @Component({
     selector: "system-menu",
