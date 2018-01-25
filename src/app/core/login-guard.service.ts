@@ -16,7 +16,7 @@ export class LoginGuard implements CanActivate {
 
     constructor(private router: Router,
                 private sessionService: SessionService,
-                private http:_HttpClient,
+                private http: _HttpClient,
                 @Inject(DA_SERVICE_TOKEN) private tokenService: TokenService,
                 private menu: MenuService) {
     }

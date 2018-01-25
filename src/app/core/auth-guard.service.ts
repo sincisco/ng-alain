@@ -1,16 +1,23 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 import {
     CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild,
     CanLoad, Route
-} from "@angular/router";
-import {Observable} from "rxjs/Observable";
+} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
 import {SessionService} from '@core/session.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     constructor(private router: Router,
-                private session:SessionService) {
+                private session: SessionService) {
+    }
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+        if (this.session.isLoggedIn) {
+            return this.checkPermission();
+        }
+        return false;
     }
 
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -22,14 +29,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return this.checkPermission();
     }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        let url: string = state.url;
-        if(this.session.isLoggedIn){
-            return this.checkPermission();
-        }
 
-        return false;
-    }
 
     /**
      * 判断当前用户是否为授权用户

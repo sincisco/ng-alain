@@ -1,27 +1,30 @@
-div.metro-menu-wrapper{
-    div.menu-list{
+div.metro-menu-wrapper {
+    div.menu-list {
         display: inline-flex;
         height: 100%;
         position: relative;
-        .custom-tile-menu{
-            .tile-area{
+        .custom-tile-menu {
+            .tile-area {
                 display: inline-flex;
                 position: relative;
                 padding-top: 60px;
-                .tile-area-title{
+                .tile-area-title {
                     position: absolute;
                     font: 400 2.25rem/1.1 "Segoe UI", "Open Sans", sans-serif, serif;
                 }
-                .tile-group{
-                    .tile-container{
+                .tile-group {
+                    .tile-container {
                         position: relative;
-                        .custom-tile{
+                        .custom-tile {
                             position: absolute;
                             overflow: hidden;
                         }
                     }
+                    &.no-children {
+                        display: none;
+                    }
                 }
-                .tile-group:last-child{
+                .tile-group:last-child {
                     margin-right: 80px;
                 }
             }

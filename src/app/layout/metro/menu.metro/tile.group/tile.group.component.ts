@@ -1,50 +1,52 @@
-import {Component, Input, ContentChildren, QueryList, AfterViewInit} from "@angular/core";
-import {LayoutProcessor} from "./sort";
-import {TileComponent} from "../tile/tile.component";
+import {Component, Input, ContentChildren, QueryList, AfterViewInit} from '@angular/core';
+import {LayoutProcessor} from './sort';
+import {TileComponent} from '../tile/tile.component';
 
 @Component({
     selector: 'tile-group',
     templateUrl: './tile.group.component.html',
-    host:{
-      "[class]":"_class"
+    host: {
+        '[class]': '_class'
     }
 })
-export class TileGroupComponent implements AfterViewInit{
+export class TileGroupComponent implements AfterViewInit {
     @Input()
-    title:string="title";
+    title: 'title';
 
-    @ContentChildren(TileComponent) tileArray:QueryList<TileComponent>;
+    @ContentChildren(TileComponent) tileArray: QueryList<TileComponent>;
 
-    ngAfterViewInit(){
-       this._setSize((new LayoutProcessor(this.tileArray.toArray())).groupWidth);
+    ngAfterViewInit() {
+        this._childrenNum = this.tileArray.length;
+        this._setSize((new LayoutProcessor(this.tileArray.toArray())).groupWidth);
     }
 
-    private _size="double";
-    _class="";
+    private _size = 'double';
+    private _childrenNum = 0;
+    _class = '';
 
-    _setSize(size:number){
-        switch(size){
+    _setSize(size: number) {
+        switch (size) {
             case 2:
-                this._size="one";
+                this._size = 'one';
                 break;
             case 4:
-                this._size="double";
+                this._size = 'double';
                 break;
             case 6:
-                this._size="three";
+                this._size = 'three';
                 break;
             case 8:
-                this._size="four";
+                this._size = 'four';
                 break;
         }
-        setTimeout(()=>{
+        setTimeout(() => {
             this._setClass();
-        })
+        });
 
     }
 
     _setClass(): void {
-      this._class="tile-group "+this._size;
+        this._class = ['tile-group ', this._size, this._childrenNum ? '' : 'no-children'].join(' ');
     }
 
 
