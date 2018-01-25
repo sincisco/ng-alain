@@ -25,9 +25,6 @@
         "@testing/*": [ "testing/*" ],
         "@env": [ "environments/" ],
         "@env/*": [ "environments/*" ],
-        "@platform/interface": [ "platform/core/interfaces"],
-        "@platform/interface/*": [ "platform/core/interfaces/*"],
-        "@platform/services": [ "platform/core/services"],
         "@delon/*": [ "../node_modules/@microon/*"]
     }
   }

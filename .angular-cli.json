@@ -18,8 +18,8 @@
         "testTsconfig": "tsconfig.spec.json",
         "prefix": "app",
         "styles": [
-            "platform/styles/fonts/fonts.metro/metro-icons.css",
-            "platform/styles/fonts/fonts.shepherd/style.css",
+            "styles/fonts/fonts.metro/metro-icons.css",
+            "styles/fonts/fonts.shepherd/style.css",
             "styles.less"
         ],
         "scripts": [
