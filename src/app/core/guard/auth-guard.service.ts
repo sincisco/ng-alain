@@ -4,7 +4,7 @@ import {
     CanLoad, Route
 } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {SessionService} from '@core/session.service';
+import {SessionService} from 'app/core/session.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         if (this.session.isLoggedIn) {
-            return this.checkPermission();
+            return this.checkPermission(state.url);
         }
         return false;
     }
@@ -26,15 +26,14 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     canLoad(route: Route): boolean {
         const url = `/${route.path}`;
-        return this.checkPermission();
+        return this.checkPermission(url);
     }
-
 
 
     /**
      * 判断当前用户是否为授权用户
      * */
-    checkPermission(): boolean {
+    checkPermission(url?: string): boolean {
         // TODO: 将任务代理给AuthService执行
         return true;
     }

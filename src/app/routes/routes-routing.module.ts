@@ -20,10 +20,10 @@ import {Exception403Component} from './exception/403.component';
 import {Exception404Component} from './exception/404.component';
 import {Exception500Component} from './exception/500.component';
 import {LayoutMetroComponent} from '../layout/metro/layout.metro.component';
-import {AuthGuard} from '@core/auth-guard.service';
-import {pageRoutes} from '../pages/pages-routing.module';
-import {LoginGuard} from '@core/login-guard.service';
+import {AuthGuard} from '@core/guard/auth-guard.service';
+import {LoginGuard} from '@core/guard/login-guard.service';
 import {LoginComponent} from './login/login.component';
+import {pageRoutes} from '../pages/pages-routing.module';
 
 const routes: Routes = [
     {

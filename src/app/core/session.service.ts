@@ -4,18 +4,21 @@ import {OrgGrade} from '../models/orgGrade';
 import {Menu, MenuService, SettingsService} from '@microon/theme';
 import {DA_SERVICE_TOKEN, TokenService} from '@microon/auth';
 
+/**
+ * 用户登陆后 初始化相关信息
+ */
 @Injectable()
 export class SessionService {
 
-    private _inited: boolean = false;
+    private _inited = false;
     private _session: Session;  // TODO: 应该定义为private
     private _loggedIn: boolean;
 
     constructor(private menuService: MenuService,
-                @Inject(DA_SERVICE_TOKEN)private tokenService:TokenService,
-                private settings:SettingsService) {
+                @Inject(DA_SERVICE_TOKEN) private tokenService: TokenService,
+                private settings: SettingsService) {
         this.tokenService.change().subscribe((res: any) => {
-            console.log("change",JSON.stringify(res));
+            console.log('change', JSON.stringify(res));
             this.settings.setUser(res);
         });
     }
@@ -26,12 +29,7 @@ export class SessionService {
 
     set Session(session: any) {
         this._session = session;
-        if (session) {
-            this._inited = true;
-        } else {
-            this._inited = false;
-        }
-
+        this._inited = session ? true : false;
     }
 
     get Session() {
@@ -46,14 +44,31 @@ export class SessionService {
         this._loggedIn = value;
     }
 
-    private _currentPath:Array<Menu> =[];
+    private _currentPath: Array<Menu> = [];
 
-    set currentPath(param:Array<Menu>){
-        this._currentPath.splice(0,this._currentPath.length);
+    set currentPath(param: Array<Menu>) {
+        this._currentPath.splice(0, this._currentPath.length);
         this._currentPath.push(...param);
     }
 
-    getCurrentPath(){
+    get token() {
+        const tokenModel = this.tokenService.get();
+        return tokenModel ? tokenModel.token : '';
+    }
+
+    set redirect(param: string) {
+        this.tokenService.redirect = param;
+    }
+
+    get redirect(): string {
+        return this.tokenService.redirect;
+    }
+
+    get login_url(): string {
+        return this.tokenService.login_url;
+    }
+
+    getCurrentPath() {
         return this._currentPath;
     }
 
@@ -69,15 +84,15 @@ export class SessionService {
         this.menuService.updateACLFlag((data.menuDTOList || []).map((value: any) => {
             return value.no;
         }));
-        const token =  {
+        const token = {
             name: data.name,
             avatar: './assets/img/zorro.svg',
-            email: data.email||"xxx@zjft.com",
+            email: data.email || 'xxx@zjft.com',
             token: data.webToken,
         };
         console.log(JSON.stringify(token));
         this.tokenService.set(token);
-        this._loggedIn=true;
+        this._loggedIn = true;
     }
 }
 
