@@ -1,6 +1,5 @@
 import {Component, ViewChild, ElementRef, ViewContainerRef, ComponentFactoryResolver, AfterViewInit} from "@angular/core";
 import {Router} from "@angular/router";
-import {Menu} from "@delon/theme";
 import {IMenu, MenuConfig, refresh} from '../../pages.menu/menu.config';
 
 
@@ -29,7 +28,7 @@ export class LayoutMetroComponent implements AfterViewInit{
   show: boolean = false;
   animating: false;
 
-  showMenuPanel(menuItem: Menu) {
+  showMenuPanel(menuItem: IMenu) {
       console.log(menuItem);
     var $menuWrapper = this.$menuWrapper,
       $list = this.$menuList,

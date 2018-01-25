@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID, APP_INITIALIZER, Injector } from '@angular/core';
+import { NgModule, LOCALE_ID, APP_INITIALIZER } from '@angular/core';
 import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +21,6 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '@core/i18n/i18n.service';
-import {SystemMenuComponent} from "./pages.menu/system.menu.component";
 import {getMenuComponentArray} from './pages.menu/menu.config';
 
 // AoT requires an exported function for factories
@@ -36,9 +35,8 @@ export function StartupServiceFactory(startupService: StartupService): Function 
 
 @NgModule({
     declarations: [
-        AppComponent,
-        ...getMenuComponentArray()
-    ],
+        AppComponent
+    ].concat(getMenuComponentArray()),
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -70,7 +68,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
             multi: true
         }
     ],
-    entryComponents: [...getMenuComponentArray()],
+    entryComponents: getMenuComponentArray(),
     bootstrap: [AppComponent]
 })
 export class AppModule { }
