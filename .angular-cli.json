@@ -24,9 +24,9 @@
         ],
         "scripts": [
             "../node_modules/jquery/dist/jquery.js",
-            "platform/utils/jquery.cookie.js",
-            "platform/utils/jquery.mousewheel.js",
-            "platform/utils/jquery.animateCss.js",
+            "utils/jquery.cookie.js",
+            "utils/jquery.mousewheel.js",
+            "utils/jquery.animateCss.js",
             "../node_modules/@antv/g2/dist/g2.min.js",
             "../node_modules/@antv/data-set/dist/data-set.min.js",
             "../node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js"
