@@ -21,8 +21,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '@core/i18n/i18n.service';
-import {getMenuComponentArray} from './pages.menu/menu.config';
-
+import {SystemMenuComponent} from "./pages.menu/system.menu.component";
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, `assets/i18n/`, '.json');
@@ -32,11 +31,14 @@ export function StartupServiceFactory(startupService: StartupService): Function 
     return () => startupService.load();
 }
 
+const MetroMenuComponent = [
+    SystemMenuComponent
+];
 
 @NgModule({
     declarations: [
-        AppComponent
-    ].concat(getMenuComponentArray()),
+        AppComponent, ...MetroMenuComponent
+    ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -68,7 +70,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
             multi: true
         }
     ],
-    entryComponents: getMenuComponentArray(),
+    entryComponents: MetroMenuComponent,
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,10 +24,7 @@ export class TileComponent extends Tile implements AfterViewInit {
 
   @HostBinding("class.element-selected")
   get selected(): boolean {
-    if (this.menuService) {
       return this.$element.data("menuTarget") === this.menuService.currentMenu;
-    }
-
   }
 
   @Input()
@@ -51,11 +48,21 @@ export class TileComponent extends Tile implements AfterViewInit {
   onClick(div: HTMLElement) {
     const menuTarget = this.$element.data("menuTarget");
     if (menuTarget) {
-      this.layout.hideMenuPanel();
-      this.router.navigateByUrl(this.menuService.getLink(menuTarget))
-        .then(() => {
-          this.menuService.currentMenu = menuTarget;
-      });
+
+        this.$element.addClass("menu-navigating");
+        setTimeout(()=>{
+            this.router.navigateByUrl(this.menuService.getLink(menuTarget))
+                .then(() => {
+                    console.log("onfullfilled:"+menuTarget);
+                    this.$element.removeClass("menu-navigating");
+                    this.menuService.currentMenu = menuTarget;
+                    this.layout.hideMenuPanel();
+                },()=>{
+                    console.log("onrejected:"+menuTarget);
+                    this.$element.removeClass("menu-navigating");
+                });
+        },10)
+
     }
   }
 

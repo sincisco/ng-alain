@@ -31,7 +31,7 @@ export class LoginGuard implements CanActivate {
         if (session.isLoggedIn) {
             // login in;
             return true;
-        } else if (session.token) {
+        } else if (session.canRetry) {
             // refresh browser;
             return new Promise((resolve, reject) => {
                 this._getCurUser()

@@ -20,7 +20,8 @@
     transition: all .2s @layout-ease;
     z-index: 100;
     overflow: hidden;
-    background-color: #404040;
+    //background-color: #404040;
+    background-image: linear-gradient(0deg, #000000, #393939, #0f0e0e);
     backface-visibility: hidden;
     -webkit-overflow-scrolling: touch;
     transform: translateX(-100%);
@@ -91,7 +92,6 @@
             transition: border-left-color .4s ease;
             &.nav-group-title {
                 color: hsla(0, 0%, 100%, .67);
-                background-color: #3b3b3b;
                 padding: @aside-nav-padding-top-bottom @layout-gutter * 2;
             }
             // Selected

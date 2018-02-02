@@ -1,16 +1,51 @@
 <div class="container">
-  <div class="spin">
-    <a class="tile-button" (click)="toggle()">
-      <span class="zijin-icon-icon_screen"></span>
-    </a>
-    <a class="tile-button">
-      <span class="zijin-icon-addressbook"></span>
-    </a>
-    <a class="tile-button">
-      <span class="zijin-icon-eye"></span>
-    </a>
-    <a class="tile-button">
-      <span class="zijin-icon-power"></span>
-    </a>
-  </div>
+    <div class="spin">
+        <a class="tile-button" (click)="toggle()">
+            <span class="zijin-icon-icon_screen"></span>
+        </a>
+        <a class="tile-button">
+            <nz-dropdown nzPlacement="bottomRight">
+                <span class="mif-user" nz-dropdown></span>
+                <div nz-menu class="width-sm">
+                    <!--<div nz-menu-item [nzDisable]="true"><i class="anticon anticon-user mr-sm"></i>个人中心</div>
+                    <div nz-menu-item [nzDisable]="true"><i class="anticon anticon-setting mr-sm"></i>设置</div>-->
+                    <div nz-menu-item class="user-block clearfix">
+                        <div  class="user-block-dropdown">
+                            <nz-avatar class="avatar" [nzIcon]="'user'" [nzSize]="'large'"></nz-avatar>
+                            <div class="info">
+                                <strong>{{settings.user.name}}</strong>
+                                <p class="text-truncate">{{settings.user.email}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                <li nz-menu-divider></li>
+                                    <div nz-menu-item (click)="logout()"><i class="anticon anticon-setting mr-sm"></i>退出登录</div>-->
+                </div>
+            </nz-dropdown>
+        </a>
+        <a class="tile-button">
+            <nz-dropdown nzTrigger="click" nzPlacement="bottomRight">
+                <span class="anticon anticon-setting" nz-dropdown></span>
+                <div nz-menu style="width:200px">
+                    <div nz-menu-item class="theme-switch">
+                        <header-theme></header-theme>
+                    </div>
+                    <div nz-menu-item>
+                        <header-fullscreen></header-fullscreen>
+                    </div>
+                    <div nz-menu-item>
+                        <header-storage></header-storage>
+                    </div>
+                    <!--<div nz-menu-item>
+                        <header-i18n></header-i18n>
+                    </div>-->
+                </div>
+            </nz-dropdown>
+        </a>
+        <a class="tile-button" (click)="logout()">
+
+
+            <span class="zijin-icon-power"></span>
+        </a>
+    </div>
 </div>

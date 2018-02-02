@@ -11,6 +11,7 @@ import {mergeMap, catchError} from 'rxjs/operators';
 import {NzMessageService} from 'ng-zorro-antd';
 import {_HttpClient} from '@delon/theme';
 import {environment} from '@env/environment';
+import { SessionService } from '@core/session.service';
 
 /**
  * 默认HTTP拦截器，其注册细节见 `app.module.ts`
@@ -32,6 +33,7 @@ export class DefaultInterceptor implements HttpInterceptor {
         // 可能会因为 `throw` 导出无法执行 `_HttpClient` 的 `end()` 操作
         this.injector.get(_HttpClient).end();
         console.log(`handleData ${where}`, event);
+        const sessionService=this.injector.get(SessionService);
         // 业务处理：一些通用操作
         switch (event.status) {
             case 200:
@@ -39,7 +41,7 @@ export class DefaultInterceptor implements HttpInterceptor {
                 // 并显示 `error_message` 内容
 
                 const body: any = event instanceof HttpResponse && event.body;
-                if (body && body.retCode && body.retCode !== '00') {
+                if (body && body.retCode && body.retCode !== '00'&& body.retCode !== 'LF'&& body.retCode !== 'F1') {
                     this.msg.error(body.retMsg);
                     // 继续抛出错误中断后续所有 Pipe、subscribe 操作，因此：
                     // this.http.get('/').subscribe() 并不会触发
@@ -47,7 +49,7 @@ export class DefaultInterceptor implements HttpInterceptor {
                 }
                 break;
             case 401: // 未登录状态码
-                this.goTo('/passport/login');
+                this.goTo(sessionService.login_url);
                 break;
             case 403:
             case 404:
@@ -55,14 +57,14 @@ export class DefaultInterceptor implements HttpInterceptor {
                 //this.goTo(`/${event.status}`);
                 break;
             case 900:
-                this.goTo('passport/login');
+                this.goTo(sessionService.login_url);
                 break;
         }
         return of(event);
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
-
+        console.log("default intercept");
         // 统一加上服务端前缀
         let url = req.url;
         if (!url.startsWith('https://') && !url.startsWith('http://')) {

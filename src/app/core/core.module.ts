@@ -5,12 +5,14 @@ import {I18NService} from './i18n/i18n.service';
 import {AuthGuard} from '@core/guard/auth-guard.service';
 import {SessionService} from '@core/session.service';
 import {LoginGuard} from '@core/guard/login-guard.service';
+import { AuthService } from '@core/auth.service';
 
 @NgModule({
     providers: [
         I18NService,
         LoginGuard,
         AuthGuard,
+        AuthService,
         SessionService
     ]
 })

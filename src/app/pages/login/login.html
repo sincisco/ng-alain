@@ -1,0 +1,43 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submit()">
+  <div class="center-bg">
+    <img src="assets/images/login/left.png"/>
+    <div class="right-content">
+      <div class="form-border">
+        <img src="assets/images/login/words.png"/>
+        <div nz-form-item class="form-item">
+          <div nz-form-control [nzValidateStatus]="validateForm.controls.userName">
+            <nz-input formControlName="userID" [nzPlaceHolder]="'用户名'" [nzSize]="'large'">
+              <ng-template #prefix>
+                <i class="anticon anticon-user"></i>
+              </ng-template>
+            </nz-input>
+            <div nz-form-explain
+                 *ngIf="validateForm.controls.userID.dirty && validateForm.controls.userID.hasError('required')">
+              请输入用户名!
+            </div>
+          </div>
+        </div>
+        <div nz-form-item class="form-item">
+          <div nz-form-control [nzValidateStatus]="validateForm.controls.password">
+            <nz-input formControlName="password" [nzType]="'password'" [nzPlaceHolder]="'密码'" [nzSize]="'large'">
+              <ng-template #prefix>
+                <i class="anticon anticon-lock"></i>
+              </ng-template>
+            </nz-input>
+            <div nz-form-explain
+                 *ngIf="validateForm.controls.password.dirty && validateForm.controls.password.hasError('required')">
+              请输入密码!
+            </div>
+          </div>
+        </div>
+        <div nz-form-item class="form-item">
+          <div nz-form-control>
+            <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登录</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+

@@ -23,7 +23,7 @@ export class TileAreaComponent {
 
   ngAfterViewInit() {
     this.$element.click((event) => {
-      if ($(event.target).is("tile-area")) {
+      if ($(event.target).is("tile-area,tile-group")) {
         this.layout.hideMenuPanel();
       }
     });

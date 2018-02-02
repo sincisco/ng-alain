@@ -5,15 +5,18 @@ import {
 } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {SessionService} from 'app/core/session.service';
+import { AuthService } from '@core/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     constructor(private router: Router,
+                private authService:AuthService,
                 private session: SessionService) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+        console.log("AuthGuard","canActivate");
         if (this.session.isLoggedIn) {
             return this.checkPermission(state.url);
         }
@@ -21,10 +24,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     }
 
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+        console.log("AuthGuard","canActivateChild");
         return this.canActivate(childRoute, state);
     }
 
     canLoad(route: Route): boolean {
+        console.log("AuthGuard","canActivateChild");
         const url = `/${route.path}`;
         return this.checkPermission(url);
     }
@@ -35,7 +40,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
      * */
     checkPermission(url?: string): boolean {
         // TODO: 将任务代理给AuthService执行
-        return true;
+        return this.authService.checkPermission(url);
     }
 
 }

@@ -1,8 +1,11 @@
 <ul>
-  <li *ngFor="let menu of menuArray;" [class.active]="menu._active">
-    <a  (click)="doShow(menu)" >
-      <span class="item-icon {{menu.icon}}"></span>
-      <span class="item-label">{{menu.text}}</span>
-    </a>
-  </li>
+    <ng-container *ngFor="let menu of menuArray;">
+        <li *ngIf="enable(menu.text)"  [class.active]="menu._active">
+            <a  (click)="doShow(menu)">
+                <span class="item-icon {{menu.icon}}"></span>
+                <span class="item-label">{{menu.text}}</span>
+            </a>
+        </li>
+    </ng-container>
+
 </ul>

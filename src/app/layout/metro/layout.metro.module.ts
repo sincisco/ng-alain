@@ -8,12 +8,14 @@ import {MenuModule} from "./menu.metro/menu.module";
 import {ToolbarModule} from "./toolbar/toolbar.module";
 import {SidebarModule} from "./sidebar/sidebar.module";
 import {LayoutMetroComponent} from "./layout.metro.component";
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
+      SharedModule,
 
     HeaderModule,
     MenuModule,

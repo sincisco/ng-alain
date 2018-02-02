@@ -106,7 +106,7 @@ export const ZORROMODULES = [
     // NzAffixModule,
     // NzAnchorModule,
     NzAvatarModule,
-    NzUploadModule
+    //NzUploadModule
 ];
 // endregion
 
@@ -209,7 +209,7 @@ const MOCKMODULE = !environment.production || environment.chore === true ?
             token_send_place:'header',
             token_send_key: 'X-Session-Token',
             token_invalid_redirect:false,
-            login_url: `/passport/login`
+            login_url: `/login`
         }),
         // acl
         AlainACLModule.forRoot(),
