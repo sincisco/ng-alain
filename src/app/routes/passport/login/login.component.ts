@@ -1,14 +1,13 @@
 import {MenuService, SettingsService} from '@delon/theme';
-import {Component, OnDestroy, Inject} from '@angular/core';
+import {Component, OnDestroy, Inject, Optional} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN} from '@delon/auth';
 import {environment} from '@env/environment';
 import {SessionService} from '@core/session.service';
-import {Session} from '../../../models/session';
-import {OrgGrade} from '../../../models/orgGrade';
 import {LoginService} from './login.service';
+import {ReuseTabService} from '@microon/abc';
 
 @Component({
     selector: 'passport-login',
@@ -32,6 +31,7 @@ export class UserLoginComponent implements OnDestroy {
                 private loginService: LoginService,
                 private modal: NzModalService,
                 private menuService: MenuService,
+                @Optional() @Inject(ReuseTabService) private reuseTabService: ReuseTabService,
                 @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
         this.form = fb.group({
             userName: [null, [Validators.required, Validators.minLength(5)]],
@@ -110,6 +110,8 @@ export class UserLoginComponent implements OnDestroy {
                     });
                     return;
                 } else {
+                    // 清空路由复用信息
+                    this.reuseTabService.clear();
                     this.session.parseData(data);
                     // RetInfo 怎么处理？？？
                     this.router.navigate([this.tokenService.redirect|| '/']);

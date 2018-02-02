@@ -10,6 +10,7 @@
     },
     "menu": [{
         "text": "主导航",
+        "serverID":"A",
         "translate": "main_navigation",
         "group": true,
         "children": [{
@@ -87,6 +88,7 @@
         },
         {
             "text": "应用管理",
+            "serverID":"A",
             "group": true,
             "icon": "zijin-icon-report",
             "children": [
@@ -109,11 +111,13 @@
         },
         {
             "text": "服务定义",
+            "serverID":"A",
             "group": true,
             "icon": "zijin-icon-dataMining",
             "children": [
                 {
                     "id": "service.definition",
+                    "serverID":"A",
                     "text": "服务定义",
                     "link": "/serviceDefinition/serviceDef"
                 }
@@ -122,37 +126,45 @@
         {
         "text": "组件",
         "translate": "component",
+            "serverID":"A",
         "group": true,
         "children": [{
             "text": "基础元素",
+            "serverID":"A",
             "translate": "elements",
             "link": "/elements",
             "icon": "icon-chemistry",
             "acl": "user1",
             "children": [{
                 "text": "按钮",
+                "serverID":"A",
                 "link": "/elements/buttons",
                 "translate": "buttons",
                 "shortcut": true
             }, {
                 "text": "Notification",
+                "serverID":"A",
                 "link": "/elements/notification",
                 "translate": "notification",
                 "shortcut": true
             }, {
                 "text": "Modal",
+                "serverID":"A",
                 "link": "/elements/modal",
                 "translate": "modal"
             }, {
                 "text": "SweetAlert",
+                "serverID":"A",
                 "link": "/elements/sweetalert",
                 "translate": "sweetalert"
             }, {
                 "text": "Tree Antd",
+                "serverID":"A",
                 "link": "/elements/tree-antd",
                 "translate": "tree-antd"
             }, {
                 "text": "Sortable",
+                "serverID":"A",
                 "link": "/elements/sortable",
                 "translate": "sortable"
             }, {
