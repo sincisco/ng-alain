@@ -11,3 +11,13 @@ export class Session {
               public view?: string) {
   }
 }
+
+export interface ISession{
+    account: string;
+    name: string;
+    orgGrade?: OrgGrade;
+    orgNo?: string;
+    orgName?: string;
+    roleCatalog?: number;
+    view?: string;
+}

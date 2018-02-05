@@ -45,7 +45,7 @@ export class DefaultInterceptor implements HttpInterceptor {
                     this.msg.error(body.retMsg);
                     // 继续抛出错误中断后续所有 Pipe、subscribe 操作，因此：
                     // this.http.get('/').subscribe() 并不会触发
-                    return ErrorObservable.throw(event);
+                    return ErrorObservable.create(event);
                 }
                 break;
             case 401: // 未登录状态码

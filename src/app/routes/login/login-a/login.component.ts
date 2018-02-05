@@ -1,26 +1,29 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SessionService} from "../../core/session.service";
+
 import {NzModalService} from "ng-zorro-antd";
 import {DA_SERVICE_TOKEN, ITokenService} from "@microon/auth";
-import {LoginService} from "./login.service";
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {SessionService} from '@core/session.service';
+import {LoginAService} from '../login.service';
+
 
 @Component({
     selector: "login",
     templateUrl: "./login.html",
     styleUrls: ["./login.less"]
 })
-export class LoginComponent implements OnInit {
+export class LoginAComponent implements OnInit {
 
     loading = false;
     validateForm: FormGroup;
 
     constructor(private router: Router,
-                private session: SessionService,
-                private loginService: LoginService,
                 private fb: FormBuilder,
                 private modal: NzModalService,
+                private session: SessionService,
+                private loginService: LoginAService,
                 @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService) {
     }
 
@@ -40,35 +43,39 @@ export class LoginComponent implements OnInit {
 
         this.loginService.login(this.validateForm.value).subscribe(
             data => {
-                console.log("login next");
                 this.loading = false;
-                console.log("登录返回信息", data);
+                this.session.parseData(data);
 
                 switch (data.retCode) {
-                    case "FF":
-                    case "TT":
-                    case "EE":
-                        this.modal.error({
-                            content: `登录异常！ 返回码：${data.retCode}, 返回信息：${data.retMsg}`
-                        });
-                        break;
                     case "LF":
-                        this.session.parseData(data);
-                        this.router.navigate(["password"]);
+                        this.router.navigate(["/password"]);
                         break;
                     case "LU":
                     case "00":
-                        this.session.parseData(data);
                         // RetInfo 怎么处理？？？
                         this.router.navigate([this.tokenService.redirect || "/"]);
                         break;
-                    default :
-                        console.log("未知错误！");
-                        break;
                 }
             }, error => {
-                console.log("login error");
-                console.log(error);
+                if(error instanceof HttpResponse){
+                    const data= error.body;
+                    this.modal.error({
+                        content: `业务异常！ 返回码：${data.retCode}, 返回信息：${data.retMsg}`
+                    });
+                }else if(error instanceof HttpErrorResponse){
+                    this.modal.error({
+                        content: `服务端异常！ 返回码：${error.status}, 返回信息：${error.message}`
+                    });
+                }else if(error instanceof Error){
+                    this.modal.error({
+                        content: `异常！ ${error.message}`
+                    });
+                }else{
+                    this.modal.error({
+                        content: `登录过程中遇到未知异常！`
+                    });
+                }
+                this.loading = false;
             },
             () => {
                 console.log("login complete");

@@ -18,6 +18,8 @@ import { Exception404Component } from './exception/404.component';
 import { Exception500Component } from './exception/500.component';
 import {LoginService} from "./passport/login/login.service";
 import {LoginComponent} from './login/login.component';
+import {LoginAComponent} from './login/login-a/login.component';
+import {LoginAService} from './login/login.service';
 
 @NgModule({
     imports: [ SharedModule, RouteRoutingModule ],
@@ -31,13 +33,14 @@ import {LoginComponent} from './login/login.component';
         LoginComponent,
         UserRegisterComponent,
         UserRegisterResultComponent,
+        LoginAComponent,
         // single pages
         CallbackComponent,
         Exception403Component,
         Exception404Component,
         Exception500Component
     ],
-    providers:[LoginService]
+    providers:[LoginService,LoginAService]
 })
 
 export class RoutesModule {}

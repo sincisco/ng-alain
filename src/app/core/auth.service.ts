@@ -15,7 +15,7 @@ export class AuthService {
 
     checkPermission(url: string): boolean {
         console.log('checkPermission:', url);
-        let ret = false;
+        let ret = true;
         if(excludes.includes(url)){
             return true;
         }

@@ -8,7 +8,7 @@ import {environment} from "@env/environment";
 
 @Component({
     templateUrl: "./password.html",
-    styleUrls: ["./password.scss"]
+    styleUrls: ["./password.less"]
 })
 export class PasswordComponent implements OnInit {
     validateForm: FormGroup;
@@ -58,7 +58,7 @@ export class PasswordComponent implements OnInit {
             .subscribe(data => {
                 console.log(data);
                 console.log("update success");
-                this.nzMessage.error("修改密码成功！");
+                this.nzMessage.success("  修改密码成功！");
                 console.log("loading guard: navigates to login...");
                 this.router.navigate(["/login"]);
             }, data => {
