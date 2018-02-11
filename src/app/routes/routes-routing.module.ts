@@ -1,3 +1,4 @@
+import { LayoutMetroV2Component } from './../layout/metro-v2/layout.metro.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {environment} from '@env/environment';
@@ -26,7 +27,7 @@ import {LoginAComponent} from './login/login-a/login.component';
 const routes: Routes = [
     {
         path: '',
-        component: LayoutDefaultComponent,
+        component: LayoutMetroV2Component,
         canActivate: [LoginGuard],
         canActivateChild: [AuthGuard],
         children: [
@@ -44,18 +45,21 @@ const routes: Routes = [
                 component: DashboardWorkplaceComponent,
                 data: {translate: 'dashboard_workplace'}
             },
-            {path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule'},
-            {path: 'elements', loadChildren: './elements/elements.module#ElementsModule'},
-            {path: 'other', loadChildren: './other/other.module#OtherModule'},
-            {path: 'forms', loadChildren: './forms/forms.module#FormsModule'},
-            {path: 'editor', loadChildren: './editor/editor.module#EditorModule'},
-            {path: 'charts', loadChildren: './charts/charts.module#ChartsModule'},
-            {path: 'tables', loadChildren: './tables/tables.module#TablesModule'},
-            {path: 'maps', loadChildren: './maps/maps.module#MapsModule'},
-            {path: 'pages', loadChildren: './pages/pages.module#PagesModule'},
-            {path: 'logics', loadChildren: './logics/logics.module#LogicsModule'},
-            {path: 'extras', loadChildren: './extras/extras.module#ExtrasModule'},
-            {path: 'pro', loadChildren: './pro/pro.module#ProModule'}
+            {path: 'system', loadChildren: './system/system.module#SystemModule'},
+
+            /* 开发案例 */
+            {path: 'widgets', loadChildren: './reference/widgets/widgets.module#WidgetsModule'},
+            {path: 'elements', loadChildren: './reference/elements/elements.module#ElementsModule'},
+            {path: 'other', loadChildren: './reference/other/other.module#OtherModule'},
+            {path: 'forms', loadChildren: './reference/forms/forms.module#FormsModule'},
+            {path: 'editor', loadChildren: './reference/editor/editor.module#EditorModule'},
+            {path: 'charts', loadChildren: './reference/charts/charts.module#ChartsModule'},
+            {path: 'tables', loadChildren: './reference/tables/tables.module#TablesModule'},
+            {path: 'maps', loadChildren: './reference/maps/maps.module#MapsModule'},
+            {path: 'pages', loadChildren: './reference/pages/pages.module#PagesModule'},
+            {path: 'logics', loadChildren: './reference/logics/logics.module#LogicsModule'},
+            {path: 'extras', loadChildren: './reference/extras/extras.module#ExtrasModule'},
+            {path: 'pro', loadChildren: './reference/pro/pro.module#ProModule'}
         ]
     },
     // 全屏布局
@@ -63,7 +67,7 @@ const routes: Routes = [
         path: 'data-v',
         component: LayoutFullScreenComponent,
         children: [
-            {path: '', loadChildren: './data-v/data-v.module#DataVModule'}
+            {path: '', loadChildren: './reference/data-v/data-v.module#DataVModule'}
         ]
     },
     // passport
