@@ -10,9 +10,10 @@
     },
     "menu": [{
         "text": "主导航",
-        "serverID":"A",
+        "serverID":"M",
         "translate": "main_navigation",
         "group": true,
+        "hide": true,
         "children": [{
             "text": "仪表盘",
             "translate": "dashboard",
@@ -22,18 +23,6 @@
                 "text": "仪表盘V1",
                 "link": "/dashboard/v1",
                 "translate": "dashboard_v1"
-            }, {
-                "text": "分析页",
-                "link": "/dashboard/analysis",
-                "translate": "dashboard_analysis"
-            }, {
-                "text": "Monitor",
-                "link": "/dashboard/monitor",
-                "translate": "dashboard_monitor"
-            }, {
-                "text": "Workplace",
-                "link": "/dashboard/workplace",
-                "translate": "dashboard_workplace"
             }]
         }, {
             "text": "快捷菜单",
@@ -41,510 +30,51 @@
             "icon": "icon-rocket",
             "shortcut_root": true,
             "children": []
-        }, {
-            "text": "小部件",
-            "translate": "widgets",
-            "link": "/widgets",
-            "icon": "icon-grid",
-            "badge": 2
         }]
     },
         {
-            "text": "平台管理",
-            "serverID":"A",
-            "group": true,
-            "icon": "zijin-icon-system",
+            "text": "智慧金库",
             "children": [
                 {
-                    "id": "system.user",
-                    "serverID":"A0103",
-                    "text": "用户信息",
-                    "link": "/system/user"
-                },
-                {
-                    "id": "system.password",
-                    "text": "用户密码",
-                    "link": "/system/password"
-                },
-                {
-                    "id": "system.role",
-                    "text": "角色权限",
-                    "link": "/system/role"
-                }
-            ]
-        },
-        {
-            "text": "服务API",
-            "serverID":"B01",
-            "group": true,
-            "icon": "zijin-icon-detailQuery",
-            "children": [
-                {
-                    "id": "serviceAPI.info",
-                    "text": "服务管理",
-                    "link": "/serviceAPI/serviceInfo"
-                }
-            ]
-        },
-        {
-            "text": "应用管理",
-            "serverID":"A",
-            "group": true,
-            "icon": "zijin-icon-report",
-            "children": [
-                {
-                    "id": "application.query",
-                    "text": "我的应用",
-                    "link": "/application/applicationQuery"
-                },
-                {
-                    "id": "application.recycleBin",
-                    "text": "应用回收站",
-                    "link": "/application/applicationQuery"
-                },
-                {
-                    "id": "application.audit",
-                    "text": "应用审核",
-                    "link": "/application/applicationQuery"
-                }
-            ]
-        },
-        {
-            "text": "服务定义",
-            "serverID":"A",
-            "group": true,
-            "icon": "zijin-icon-dataMining",
-            "children": [
-                {
-                    "id": "service.definition",
                     "serverID":"A",
-                    "text": "服务定义",
-                    "link": "/serviceDefinition/serviceDef"
+                    "text": "系统管理",
+                    "icon": "zijin-icon-system",
+                    "children": [
+                        {
+                            "serverID": "A01",
+                            "text": "用户管理",
+                            "group": true,
+                            "children": [
+                                {
+                                    "id": "system.user",
+                                    "serverID": "A0101",
+                                    "text": "用户信息",
+                                    "link": "/system/user",
+                                    "shortcut": true,
+                                    "background": "tile_userInfo1.png",
+                                    "tile_size": "tile"
+                                },
+                                {
+                                    "id": "system.role",
+                                    "serverID": "A0102",
+                                    "text": "角色信息",
+                                    "link": "/system/role",
+                                    "background": "templaterole.jpg",
+                                    "tile_size": "tile-wide"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "system.org",
+                            "serverID": "A02",
+                            "text": "机构管理",
+                            "link": "/system/org",
+                            "background": "tile_userOrg.png",
+                            "tile_size": "tile"
+                        }
+                    ]
                 }
             ]
-        },
-        {
-        "text": "组件",
-        "translate": "component",
-            "serverID":"A",
-        "group": true,
-        "children": [{
-            "text": "基础元素",
-            "serverID":"A",
-            "translate": "elements",
-            "link": "/elements",
-            "icon": "icon-chemistry",
-            "acl": "user1",
-            "children": [{
-                "text": "按钮",
-                "serverID":"A",
-                "link": "/elements/buttons",
-                "translate": "buttons",
-                "shortcut": true
-            }, {
-                "text": "Notification",
-                "serverID":"A",
-                "link": "/elements/notification",
-                "translate": "notification",
-                "shortcut": true
-            }, {
-                "text": "Modal",
-                "serverID":"A",
-                "link": "/elements/modal",
-                "translate": "modal"
-            }, {
-                "text": "SweetAlert",
-                "serverID":"A",
-                "link": "/elements/sweetalert",
-                "translate": "sweetalert"
-            }, {
-                "text": "Tree Antd",
-                "serverID":"A",
-                "link": "/elements/tree-antd",
-                "translate": "tree-antd"
-            }, {
-                "text": "Sortable",
-                "serverID":"A",
-                "link": "/elements/sortable",
-                "translate": "sortable"
-            }, {
-                "text": "Spin",
-                "link": "/elements/spin",
-                "translate": "spin"
-            }, {
-                "text": "Dropdown",
-                "link": "/elements/dropdown",
-                "translate": "dropdown"
-            }, {
-                "text": "Grid",
-                "link": "/elements/grid",
-                "translate": "grid"
-            }, {
-                "text": "Grid Masonry",
-                "link": "/elements/gridmasonry",
-                "translate": "gridmasonry"
-            }, {
-                "text": "Typography",
-                "link": "/elements/typography",
-                "translate": "typography"
-            }, {
-                "text": "Font Icons",
-                "link": "/elements/iconsfont",
-                "translate": "iconsfont"
-            }, {
-                "text": "Colors",
-                "link": "/elements/colors",
-                "translate": "colors"
-            }]
-        }, {
-            "text": "Other",
-            "translate": "other",
-            "link": "/other",
-            "icon": "icon-magic-wand",
-            "children": [{
-                "text": "Split",
-                "link": "/other/split",
-                "translate": "split"
-            }, {
-                "text": "Clipboard",
-                "link": "/other/clipboard",
-                "translate": "clipboard"
-            }]
-        }, {
-            "text": "表单",
-            "translate": "forms",
-            "link": "/forms",
-            "icon": "icon-note",
-            "acl": "user1",
-            "children": [{
-                "text": "标准",
-                "link": "/forms/standard",
-                "translate": "standard"
-            }, {
-                "text": "扩展",
-                "link": "/forms/extended",
-                "translate": "extended"
-            }, {
-                "text": "校验",
-                "link": "/forms/validation",
-                "translate": "validation"
-            }, {
-                "text": "上传",
-                "link": "/forms/upload",
-                "translate": "upload",
-                "shortcut": true
-            }, {
-                "text": "图片裁剪",
-                "link": "/forms/cropper",
-                "translate": "cropper"
-            }]
-        }, {
-            "text": "编辑器",
-            "translate": "editor",
-            "link": "/editor",
-            "icon": "icon-pencil",
-            "children": [{
-                "text": "UEditor",
-                "link": "/editor/ueditor"
-            }, {
-                "text": "Tinymce",
-                "link": "/editor/tinymce"
-            }]
-        }, {
-            "text": "Charts",
-            "translate": "charts",
-            "link": "/charts",
-            "icon": "icon-graph",
-            "acl": "user1",
-            "children": [{
-                "text": "G2",
-                "link": "/charts/g2"
-            }]
-        }, {
-            "text": "表格",
-            "translate": "tables",
-            "link": "/tables",
-            "icon": "icon-grid",
-            "acl": "user2",
-            "children": [{
-                "text": "标准",
-                "link": "/tables/standard",
-                "translate": "standard"
-            }, {
-                "text": "Full",
-                "link": "/tables/full",
-                "translate": "full"
-            }, {
-                "text": "Simple Table",
-                "link": "/tables/simple-table"
-            }, {
-                "text": "Fullscreen Table",
-                "link": "/tables/fs-table",
-                "translate": "fs-table"
-            }]
-        }, {
-            "text": "地图",
-            "translate": "maps",
-            "link": "/maps",
-            "icon": "icon-map",
-            "acl": "user2",
-            "children": [{
-                "text": "QQ",
-                "link": "/maps/qq",
-                "translate": "qq"
-            }, {
-                "text": "Baidu",
-                "link": "/maps/baidu",
-                "translate": "baidu"
-            }]
-        }]
-    }, {
-        "text": "Pro",
-        "translate": "pro",
-        "group": true,
-        "children": [{
-            "text": "Form Page",
-            "translate": "form",
-            "link": "/pro/form",
-            "icon": "icon-note",
-            "children": [{
-                "text": "Step Form",
-                "link": "/pro/form/step-form",
-                "translate": "step-form"
-            }, {
-                "text": "Advanced Form",
-                "link": "/pro/form/advanced-form",
-                "translate": "advanced-form"
-            }]
-        }, {
-            "text": "List",
-            "translate": "pro-list",
-            "link": "/pro/list",
-            "icon": "icon-grid",
-            "children": [{
-                "text": "Table List",
-                "link": "/pro/list/table-list",
-                "translate": "pro-table-list"
-            }, {
-                "text": "Basic List",
-                "link": "/pro/list/basic-list",
-                "translate": "pro-basic-list"
-            }, {
-                "text": "Card List",
-                "link": "/pro/list/card-list",
-                "translate": "pro-card-list"
-            }, {
-                "text": "Cover Card List",
-                "link": "/pro/list/cover-card-list",
-                "translate": "pro-cover-card-list"
-            }, {
-                "text": "Filter Card List",
-                "link": "/pro/list/filter-card-list",
-                "translate": "pro-filter-card-list"
-            }, {
-                "text": "Search",
-                "link": "/pro/list/search",
-                "translate": "pro-search"
-            }]
-        }, {
-            "text": "Profile",
-            "translate": "pro-profile",
-            "link": "/pro/profile",
-            "icon": "icon-book-open",
-            "children": [{
-                "text": "Basic",
-                "link": "/pro/profile/basic",
-                "translate": "pro-profile-basic"
-            }, {
-                "text": "Advanced",
-                "link": "/pro/profile/advanced",
-                "translate": "pro-profile-advanced"
-            }]
-        }, {
-            "text": "Result",
-            "translate": "pro-result",
-            "link": "/pro/result",
-            "icon": "icon-check",
-            "children": [{
-                "text": "Success",
-                "link": "/pro/result/success",
-                "translate": "pro-result-success"
-            }, {
-                "text": "Fail",
-                "link": "/pro/result/fail",
-                "translate": "pro-result-fail"
-            }]
-        }, {
-            "text": "Exception",
-            "translate": "pro-exception",
-            "link": "/",
-            "icon": "icon-fire",
-            "children": [{
-                "text": "403",
-                "link": "/403",
-                "reuse": false
-            }, {
-                "text": "404",
-                "link": "/404",
-                "reuse": false
-            }, {
-                "text": "500",
-                "link": "/500",
-                "reuse": false
-            }]
-        }, {
-            "text": "User",
-            "translate": "pro-user",
-            "link": "/passport",
-            "icon": "icon-user",
-            "children": [{
-                "text": "login",
-                "link": "/passport/login",
-                "translate": "pro-login",
-                "reuse": false
-            }, {
-                "text": "register",
-                "link": "/passport/register",
-                "translate": "pro-register",
-                "reuse": false
-            }, {
-                "text": "register result",
-                "link": "/passport/register-result",
-                "translate": "pro-register-result",
-                "reuse": false
-            }]
-        }]
-    }, {
-        "text": "More",
-        "translate": "more",
-        "group": true,
-        "children": [{
-            "text": "Common Logics",
-            "translate": "logics",
-            "link": "/logics",
-            "icon": "icon-compass",
-            "children": [{
-                "text": "ACL",
-                "link": "/logics/acl",
-                "translate": "acl"
-            },
-            {
-                "text": "Route Guard",
-                "link": "/logics/guard",
-                "translate": "guard"
-            },
-            {
-                "text": "Cache",
-                "link": "/logics/cache",
-                "translate": "cache"
-            },
-            {
-                "text": "Down File",
-                "link": "/logics/downfile",
-                "translate": "downfile",
-                "shortcut": true
-            },
-            {
-                "text": "Xlsx",
-                "link": "/logics/xlsx"
-            },
-            {
-                "text": "Zip",
-                "link": "/logics/zip"
-            }]
-        }, {
-            "text": "Report",
-            "translate": "report",
-            "icon": "anticon anticon-cloud-o",
-            "children": [{
-                "text": "Relation",
-                "link": "/data-v/relation",
-                "translate": "relation",
-                "shortcut": true,
-                "reuse": false
-            }]
-        }, {
-            "text": "Pages",
-            "translate": "pages",
-            "link": "/pages",
-            "icon": "icon-doc",
-            "acl": "admin",
-            "children": [{
-                "text": "Login",
-                "link": "/pages/login",
-                "translate": "m-login",
-                "reuse": false
-            }, {
-                "text": "Register",
-                "link": "/pages/register",
-                "translate": "m-register",
-                "reuse": false
-            }, {
-                "text": "Forget",
-                "link": "/pages/forget",
-                "translate": "m-forget",
-                "reuse": false
-            }, {
-                "text": "Lock",
-                "link": "/pages/lock",
-                "translate": "m-lock",
-                "reuse": false
-            }, {
-                "text": "404",
-                "link": "/pages/404",
-                "reuse": false
-            }, {
-                "text": "500",
-                "link": "/pages/500",
-                "reuse": false
-            }, {
-                "text": "Maintenance",
-                "link": "/pages/maintenance",
-                "translate": "maintenance",
-                "reuse": false
-            }]
-        }, {
-            "text": "Extras",
-            "translate": "extras",
-            "link": "/extras",
-            "icon": "icon-cup",
-            "children": [{
-                "text": "Blog",
-                "link": "/extras/blog",
-                "translate": "blog",
-                "children": [{
-                    "text": "List",
-                    "link": "/extras/blog/list",
-                    "translate": "list",
-                    "badge": 1,
-                    "badge_dot": true
-                },{
-                    "text": "Comment",
-                    "link": "/extras/blog/comment",
-                    "translate": "comment"
-                },{
-                    "text": "Post",
-                    "link": "/extras/blog/post",
-                    "translate": "post"
-                },{
-                    "text": "WebSite",
-                    "externalLink": "//github.com/cipchk/ng-alain",
-                    "target": "_blank",
-                    "translate": "website"
-                }]
-            }, {
-                "text": "Help Center",
-                "link": "/extras/helpcenter",
-                "translate": "helpcenter"
-            }, {
-                "text": "Settings",
-                "link": "/extras/settings",
-                "translate": "settings"
-            }, {
-                "text": "Poi",
-                "link": "/extras/poi",
-                "translate": "poi"
-            }]
-        }]
-    }]
+        }
+    ]
 }

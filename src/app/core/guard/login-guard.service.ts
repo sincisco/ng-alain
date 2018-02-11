@@ -12,7 +12,7 @@ import {environment} from 'environments/environment';
 @Injectable()
 export class LoginGuard implements CanActivate {
 
-    private url = `${environment.SERVICE_URL}base/v1/menu/curMenu`;
+    private url = `${environment.SERVICE_URL}curUser`;
 
     constructor(private router: Router,
                 private sessionService: SessionService,

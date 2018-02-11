@@ -103,19 +103,11 @@ export class UserLoginComponent implements OnDestroy {
         }).subscribe(
             data => {
                 this.loading = false;
-                console.log('登录返回信息', data);
-                if (data.retCode !== '00') {
-                    this.modal.error({
-                        content: `登录异常！ 返回码：${data.retCode}, 返回信息：${data.retMsg}`
-                    });
-                    return;
-                } else {
-                    // 清空路由复用信息
-                    this.reuseTabService.clear();
-                    this.session.parseData(data);
-                    // RetInfo 怎么处理？？？
-                    this.router.navigate([this.tokenService.redirect|| '/']);
-                }
+                // 清空路由复用信息
+                this.reuseTabService.clear();
+                this.session.parseData(data);
+                // RetInfo 怎么处理？？？
+                this.router.navigate([this.tokenService.redirect|| '/']);
             }, error => {
                 console.log(this.error);
             },

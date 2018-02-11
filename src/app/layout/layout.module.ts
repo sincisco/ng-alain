@@ -1,3 +1,4 @@
+import { LayoutMetroV2Module } from './metro-v2/layout.metro.module';
 import {NgModule} from '@angular/core';
 import {SharedModule} from '@shared/shared.module';
 
@@ -43,7 +44,7 @@ const PASSPORT = [
 ];
 
 @NgModule({
-    imports: [SharedModule, LayoutMetroModule],
+    imports: [SharedModule, LayoutMetroModule, LayoutMetroV2Module],
     providers: [],
     declarations: [
         ...COMPONENTS,
@@ -53,7 +54,8 @@ const PASSPORT = [
     exports: [
         ...COMPONENTS,
         ...PASSPORT,
-        LayoutMetroModule
+        LayoutMetroModule,
+        LayoutMetroV2Module
     ]
 })
 export class LayoutModule { }

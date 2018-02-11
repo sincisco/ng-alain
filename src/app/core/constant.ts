@@ -1,7 +1,25 @@
 import {IOrgGrade} from '../models/orgGrade';
 
+export const RET_CODE = {
+    SUCCESS: "00000",
+    FAIL: "FFFFF",
+    PSD_ERROR: "000F0",
+    PSD_EMPTY: "000F2",
+    RESULT_EMPTY: "000F1",
+    EXCEPTION: "000EE",
+    TIMEOUT: "000TT",
+    PARAM_ERROR: "00096",
+    IN_REVIEW: "00099",
+    EXISTED: "00098",
+    RELATION_ERROR: "00094",
+    DELETED: "00097",
+    REPEAT_IP: "00095",
+    RIGHT: "00100"
+};
 
 export const SERVERAPI = 'http://10.34.12.104:8080/zj_bdp_web/';
+
+export const TOKEN_NAME = 'TokenID';
 
 export const REGIONS = [
     {no: 'beijing', name: '北京市'},

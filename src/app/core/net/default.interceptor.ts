@@ -12,6 +12,7 @@ import {NzMessageService} from 'ng-zorro-antd';
 import {_HttpClient} from '@delon/theme';
 import {environment} from '@env/environment';
 import { SessionService } from '@core/session.service';
+import { TOKEN_NAME } from './../constant';
 
 /**
  * 默认HTTP拦截器，其注册细节见 `app.module.ts`
@@ -73,7 +74,11 @@ export class DefaultInterceptor implements HttpInterceptor {
 
         const newReq = req.clone({
             url: url,
-            withCredentials: true
+            withCredentials: true,
+            setHeaders: {
+                "content-type": "application/json; charset=UTF-8",
+                "TokenID": $.cookie(TOKEN_NAME) || ''
+            }
         });
         return next.handle(newReq).pipe(
             mergeMap((event: any) => {
