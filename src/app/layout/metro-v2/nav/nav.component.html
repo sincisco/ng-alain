@@ -1,0 +1,22 @@
+<tile-area>
+  <ng-container *ngFor="let child of menu.children">
+    <tile-group *ngIf="child.group" title="{{child.text}}">
+      <ng-container *ngFor="let child1 of child.children">
+        <tile *menuTarget="child1.id" size="{{child1.tile_size}}" bg="bg-green" fg="fg-white">
+          <div class="tile-content">
+            <img [src]="'../../assets/images/configManage/'+child1.background" data-role="fitImage" data-format="fill">
+          </div>
+          <span class="tile-label">{{child1.text}}</span>
+        </tile>
+      </ng-container>
+    </tile-group>
+    <tile-group *ngIf="!child.group">
+      <tile *menuTarget="child.id" size="{{child.tile_size}}" bg="bg-green" fg="fg-white">
+        <div class="tile-content">
+          <img [src]="'../../assets/images/configManage/'+child.background" data-role="fitImage" data-format="fill">
+        </div>
+        <span class="tile-label">{{child.text}}</span>
+      </tile>
+    </tile-group>
+  </ng-container>
+</tile-area>

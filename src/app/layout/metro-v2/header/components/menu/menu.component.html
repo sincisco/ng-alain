@@ -1,0 +1,11 @@
+<ul>
+    <ng-container *ngFor="let menu of menuArray;let i=index;">
+        <li *ngIf="!menu._hidden" [class.active]="menu._selected">
+            <a (click)="doShow(i)">
+                <span class="item-icon {{menu.icon}}"></span>
+                <span class="item-label">{{menu.text}}</span>
+            </a>
+        </li>
+    </ng-container>
+
+</ul>

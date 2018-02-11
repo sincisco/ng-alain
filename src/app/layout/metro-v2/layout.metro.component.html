@@ -1,0 +1,19 @@
+<div class="router-progress-bar" *ngIf="isFetching"></div>
+<app-header></app-header>
+<div class="user-content-outer-wrapper">
+  <div class="user-content-inner-wrapper">
+    <div #metroMenuWrapper class="metro-menu-wrapper">
+      <div class="menu-list">
+        <metro-nav *ngFor="let menu of menus" [menu]="menu"></metro-nav>
+      </div>
+    </div>
+    <app-sidebar></app-sidebar>
+    <!--<app-toolbar></app-toolbar>-->
+    <reuse-tab></reuse-tab>
+    <section class="content-outer-wrapper">
+      <div class="content-inner-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+    </section>
+  </div>
+</div>
