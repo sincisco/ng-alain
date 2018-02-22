@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 // region: third libs
 import { CountdownModule } from 'ngx-countdown';
 import {PlatformModule} from '@microon/platform';
+import {TreeModule} from "angular-tree-component";
 const THIRDMODULES = [ CountdownModule ];
 // endregion
 
@@ -33,7 +34,8 @@ const DIRECTIVES = [];
         ...ABCMODULES,
         AlainACLModule,
         // third libs
-        ...THIRDMODULES
+        ...THIRDMODULES,
+        TreeModule
     ],
     declarations: [
         // your components

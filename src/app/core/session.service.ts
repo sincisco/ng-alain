@@ -95,7 +95,10 @@ export class SessionService {
             data.orgNo,
             data.roleCatalog
         );
-
+        
+        if(this.menuService.menus[1].children[0].shortcut_root) {
+            this.menuService.menus[1].children.splice(0,1);
+        }
         this.menuService.visit((menu, parent) => {
             menu._hidden = true;
             let menuDTO = (data.menuDTOList || []).find(value => !menu.serverID || value.no == menu.serverID);
@@ -108,7 +111,7 @@ export class SessionService {
         let shortcuts = this.menuService.menus[0].children.find(menu => menu.shortcut_root);
         if (shortcuts) {
             let poi = _.isUndefined(this.menuService.menus[1].children[0].shortcut_root) ? 0 : 1;
-            this.menuService.menus[1].children.splice(0, poi, this.menuService.menus[0].children.find(menu => menu.shortcut_root));
+            this.menuService.menus[1].children.splice(0, poi, shortcuts);
             this.menuService.resume();
         }
 

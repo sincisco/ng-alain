@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {SessionService} from '@core/session.service';
-import {LayoutMetroComponent} from "../../../layout.metro.component";
 import { SettingsService } from '@microon/theme';
 
 @Component({

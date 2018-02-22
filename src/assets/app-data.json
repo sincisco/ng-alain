@@ -35,6 +35,12 @@
                     "icon": "icon-rocket",
                     "shortcut_root": true,
                     "children": []
+                },
+                {
+                    "text": "登录",
+                    "translate": "pro-login",
+                    "link": "/login",
+                    "reuse": false
                 }
             ]
         },

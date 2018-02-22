@@ -10,7 +10,7 @@ import { GuardAdminComponent } from './guard/admin.component';
 import { GuardAuthComponent } from './guard/auth.component';
 import { GuardLeaveComponent } from './guard/leave.component';
 import { ACLComponent } from './acl/acl.component';
-import { DownFileComponent } from 'app/routes/logics/downfile/downfile.component';
+import { DownFileComponent } from './downfile/downfile.component';
 import { XlsxComponent } from './xlsx/xlsx.component';
 import { ZipComponent } from './zip/zip.component';
 import { CacheComponent } from './cache/cache.component';

@@ -91,8 +91,8 @@ export class LoginAComponent implements OnInit {
         this.session.logout();
 
         this.validateForm = this.fb.group({
-            userID: [null, [Validators.required]],
-            password: [null, [Validators.required]]
+            userID: ['admin', [Validators.required]],
+            password: ['abcd1234', [Validators.required]]
         });
     }
 
