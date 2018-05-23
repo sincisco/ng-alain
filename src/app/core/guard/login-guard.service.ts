@@ -1,12 +1,12 @@
-import {Inject, Injectable} from '@angular/core';
+import {Inject, Injectable} from "@angular/core";
 import {
     CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot
-} from '@angular/router';
-import {SessionService} from '../session.service';
-import {Observable} from 'rxjs/Observable';
-import {_HttpClient} from '@microon/theme';
-import {DA_SERVICE_TOKEN, TokenService} from '@microon/auth';
-import {environment} from 'environments/environment';
+} from "@angular/router";
+import {SessionService} from "../session.service";
+import {Observable} from "rxjs/Observable";
+import {_HttpClient} from "@microon/theme";
+import {DA_SERVICE_TOKEN, TokenService} from "@microon/auth";
+import {environment} from "environments/environment";
 
 
 @Injectable()

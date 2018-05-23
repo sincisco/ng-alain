@@ -6,13 +6,13 @@
         <img src="assets/images/login/words.png"/>
         <div nz-form-item class="form-item">
           <div nz-form-control [nzValidateStatus]="validateForm.controls.userName">
-            <nz-input formControlName="userID" [nzPlaceHolder]="'用户名'" [nzSize]="'large'">
+            <nz-input formControlName="userNo" [nzPlaceHolder]="'用户名'" [nzSize]="'large'">
               <ng-template #prefix>
                 <i class="anticon anticon-user"></i>
               </ng-template>
             </nz-input>
             <div nz-form-explain
-                 *ngIf="validateForm.controls.userID.dirty && validateForm.controls.userID.hasError('required')">
+                 *ngIf="validateForm.controls.userNo.dirty && validateForm.controls.userNo.hasError('required')">
               请输入用户名!
             </div>
           </div>

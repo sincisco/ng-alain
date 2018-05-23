@@ -1,18 +1,18 @@
-import {Injectable, Injector} from '@angular/core';
-import {Router} from '@angular/router';
+import {Injectable, Injector} from "@angular/core";
+import {Router} from "@angular/router";
 import {
     HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse,
     HttpSentEvent, HttpHeaderResponse, HttpProgressEvent, HttpResponse, HttpUserEvent,
-} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
-import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
-import {mergeMap, catchError} from 'rxjs/operators';
-import {NzMessageService} from 'ng-zorro-antd';
-import {_HttpClient} from '@delon/theme';
-import {environment} from '@env/environment';
-import { SessionService } from '@core/session.service';
-import { TOKEN_NAME } from './../constant';
+} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
+import {of} from "rxjs/observable/of";
+import {ErrorObservable} from "rxjs/observable/ErrorObservable";
+import {mergeMap, catchError} from "rxjs/operators";
+import {NzMessageService} from "ng-zorro-antd";
+import {_HttpClient} from "@delon/theme";
+import {environment} from "@env/environment";
+import {SessionService} from "@core/session.service";
+import {TOKEN_NAME} from "./../constant";
 
 /**
  * 默认HTTP拦截器，其注册细节见 `app.module.ts`
@@ -34,7 +34,7 @@ export class DefaultInterceptor implements HttpInterceptor {
         // 可能会因为 `throw` 导出无法执行 `_HttpClient` 的 `end()` 操作
         this.injector.get(_HttpClient).end();
         console.log(`handleData ${where}`, event);
-        const sessionService=this.injector.get(SessionService);
+        const sessionService = this.injector.get(SessionService);
         // 业务处理：一些通用操作
         switch (event.status) {
             case 200:
@@ -42,7 +42,7 @@ export class DefaultInterceptor implements HttpInterceptor {
                 // 并显示 `error_message` 内容
 
                 const body: any = event instanceof HttpResponse && event.body;
-                if (body && body.retCode && body.retCode !== '00'&& body.retCode !== 'LF'&& body.retCode !== 'F1') {
+                if (body && body.retCode && body.retCode !== "00000" && body.retCode !== "LF" && body.retCode !== "F1") {
                     this.msg.error(body.retMsg);
                     // 继续抛出错误中断后续所有 Pipe、subscribe 操作，因此：
                     // this.http.get('/').subscribe() 并不会触发
@@ -68,7 +68,7 @@ export class DefaultInterceptor implements HttpInterceptor {
         console.log("default intercept");
         // 统一加上服务端前缀
         let url = req.url;
-        if (!url.startsWith('https://') && !url.startsWith('http://')) {
+        if (!url.startsWith("https://") && !url.startsWith("http://")) {
             url = environment.SERVER_URL + url;
         }
 
@@ -76,15 +76,14 @@ export class DefaultInterceptor implements HttpInterceptor {
             url: url,
             withCredentials: true,
             setHeaders: {
-                "content-type": "application/json; charset=UTF-8",
-                "TokenID": $.cookie(TOKEN_NAME) || ''
+                "content-type": "application/json; charset=UTF-8"
             }
         });
         return next.handle(newReq).pipe(
             mergeMap((event: any) => {
                 // 允许统一对请求错误处理，这是因为一个请求若是业务上错误的情况下其HTTP请求的状态是200的情况下需要
                 if (event instanceof HttpResponse && event.status === 200)
-                    return this.handleData(event, 'mergeMap');
+                    return this.handleData(event, "mergeMap");
                 // 若一切都正常，则后续操作
                 return of(event);
             })/*,

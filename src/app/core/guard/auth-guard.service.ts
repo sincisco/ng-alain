@@ -11,12 +11,12 @@ import { AuthService } from '@core/auth.service';
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     constructor(private router: Router,
-                private authService:AuthService,
+                private authService: AuthService,
                 private session: SessionService) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        console.log("AuthGuard","canActivate");
+        console.log('AuthGuard', 'canActivate');
         if (this.session.isLoggedIn) {
             return this.checkPermission(state.url);
         }
@@ -24,12 +24,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     }
 
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        console.log("AuthGuard","canActivateChild");
+        console.log('AuthGuard', 'canActivateChild');
         return this.canActivate(childRoute, state);
     }
 
     canLoad(route: Route): boolean {
-        console.log("AuthGuard","canActivateChild");
+        console.log('AuthGuard', 'canActivateChild');
         const url = `/${route.path}`;
         return this.checkPermission(url);
     }

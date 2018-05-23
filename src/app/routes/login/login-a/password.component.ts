@@ -24,7 +24,7 @@ export class PasswordComponent implements OnInit {
 
     ngOnInit(): void {
         this.validateForm = this.fb.group({
-            name: [this.session.getUserSession().name, [Validators.required]],
+            name: [this.session.name, [Validators.required]],
             oldPassword: [null, [Validators.required]],
             newPassword: [null, [Validators.required, Validators.minLength(5)]],
             repeatNewPassword: [null, [Validators.required, this.confirmationValidator]],
@@ -49,7 +49,7 @@ export class PasswordComponent implements OnInit {
             return;
         }
         const params = {
-            no: this.session.getUserSession().account,
+            no: this.session.account,
             passwd: this.validateForm.controls.oldPassword.value,
             newPasswd: this.validateForm.controls.newPassword.value,
         };
@@ -82,7 +82,7 @@ export class PasswordComponent implements OnInit {
     resetForm(evt: MouseEvent) {
         evt.preventDefault();       // TODO: 为什么第二个按钮还会触发提交事件？？
         this.validateForm.reset({
-            name: this.session.getUserSession().name
+            name: this.session.name
         });
         console.log(this.validateForm);
     }

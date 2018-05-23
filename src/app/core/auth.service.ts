@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/delay';
-import { Menu, MenuService } from '@microon/theme';
+import {Injectable} from "@angular/core";
+import "rxjs/add/observable/of";
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/delay";
+import {Menu, MenuService} from "@microon/theme";
 
-const excludes=['/home'];
+const excludes = ["/home"];
 
 // TODO: 验证用户是否登录
 @Injectable()
@@ -14,16 +14,15 @@ export class AuthService {
     }
 
     checkPermission(url: string): boolean {
-        console.log('checkPermission:', url);
         let ret = true;
-        if(excludes.includes(url)){
+        if (excludes.includes(url)) {
             return true;
         }
         this._menuService.visit((menu: Menu) => {
-            if (menu.link == url && !menu._hidden) {
+            if (menu.link === url && !menu._hidden) {
                 ret = true;
             }
-        })
-        return ret;
+        });
+        return true;
     }
 }
